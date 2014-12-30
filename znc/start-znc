@@ -1,0 +1,41 @@
+#!/usr/bin/env bash
+
+# Options.
+DATADIR="/znc-data"
+
+# Build modules from source.
+if [ -d "${DATADIR}/modules" ]; then
+  # Store current directory.
+  cwd="$(pwd)"
+
+  # Find module sources.
+  modules=$(find "${DATADIR}/modules" -name "*.cpp")
+
+  # Build modules.
+  for module in $modules; do
+    cd "$(dirname "$module")"
+	# Hack for ZNC Push, Odd - 2014-11-04 16:30:41
+	if [[ $(basename $module) == "push.cpp" ]]; then
+		flags="-DUSE_CURL -lcurl"
+		CXXFLAGS="$(CXXFLAGS) $(flags)" LIBS="$(LIBS) $(flags)" znc-buildmod "$module"
+	else
+		znc-buildmod "$module"
+	fi
+  done
+
+  # Go back to original directory.
+  cd "$cwd"
+fi
+
+# Create default config if it doesn't exist
+if [ ! -f "${DATADIR}/configs/znc.conf" ]; then
+  mkdir -p "${DATADIR}/configs"
+  cp /src/znc.conf.default "${DATADIR}/configs/znc.conf"
+fi
+
+# Make sure $DATADIR is owned by znc user. This affects ownership of the
+# mounted directory on the host machine too.
+chown -R znc:znc "$DATADIR"
+
+# Start ZNC.
+exec su - znc -c "znc --foreground --datadir=$DATADIR $@"
