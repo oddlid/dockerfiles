@@ -1,0 +1,12 @@
+#!/bin/sh
+export HOME=/home/dropbox
+cd $HOME
+for DIR in Dropbox config/dropbox config/dropbox-master; do
+    test -d $DIR || mkdir -p $DIR
+    chown dropbox:dropbox $DIR
+    chmod 750 $DIR
+done
+for DIR in dropbox dropbox-master; do
+    test .$DIR || ln -s config/$DIR .$DIR
+done
+exec su - dropbox -c /usr/local/bin/dropboxd
