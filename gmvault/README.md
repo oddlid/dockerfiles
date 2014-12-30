@@ -8,7 +8,7 @@ Based on narf/gmvault, but slightly adjusted.
 ```
 #!/usr/bin/env bash
 APP=gmvault
-DB_H=$HOME/${APP}_oddebb_gmail
+DB_H=$HOME/${APP}-db
 DB_C=/home/${APP}/${APP}-db
 /usr/bin/docker run --rm -it \
 	-e DB_DIR=$DB_C \
