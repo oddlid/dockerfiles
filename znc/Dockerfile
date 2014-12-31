@@ -1,7 +1,7 @@
 FROM debian:jessie
 MAINTAINER Odd E. Ebbesen <oddebb@gmail.com>
 
-ENV	DEBIAN_FRONTEND noninteractive
+ENV DEBIAN_FRONTEND noninteractive
 ENV ZNC_VERSION 1.4
 
 RUN ln -fs /usr/share/zoneinfo/Europe/Stockholm /etc/localtime
