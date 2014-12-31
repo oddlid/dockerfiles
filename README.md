@@ -1,3 +1,1 @@
-Odds dockerfiles
-
-Not so much to see here yet. I'll be back...
+Dockerfiles for applications I like to run on servers where I might not want to install all dependencies.
