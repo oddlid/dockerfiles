@@ -6,5 +6,5 @@ COPY bootstrap.sh /root/
 RUN cd /root && chmod 755 ./bootstrap.sh && ./bootstrap.sh
 
 VOLUME ["/home/dropbox/config", "/home/dropbox/Dropbox"]
-
+EXPOSE 17500
 CMD ["/usr/local/bin/init"]
