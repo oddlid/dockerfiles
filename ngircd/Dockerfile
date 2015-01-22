@@ -1,13 +1,23 @@
-FROM ubuntu:14.04
+FROM debian:jessie
+MAINTAINER Odd E. Ebbesen <oddebb@gmail.com>
 
-RUN apt-get update
-RUN apt-get install -y ngircd=21-1
+ENV DEBIAN_FRONTEND noninteractive
+ENV LANG C.UTF-8
+ENV LC_ALL C
 
-ADD ngircd.conf /etc/ngircd/ngircd.conf
+RUN apt-get -qq update \
+		&& \
+		apt-get install -y --no-install-recommends ngircd \
+		&& \
+		apt-get clean autoclean \
+		&& \
+		apt-get autoremove -y \
+		&& \
+		rm -rf /var/lib/{apt,dpkg,cache,log}/
 
-EXPOSE :443
-EXPOSE :6664
-EXPOSE :6667
+COPY ngircd.conf /etc/ngircd/ngircd.conf
 
+VOLUME ["/etc/ngircd"]
+EXPOSE 6668
 ENTRYPOINT ["/usr/sbin/ngircd"]
 CMD ["-n"]
