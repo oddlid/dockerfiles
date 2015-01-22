@@ -7,7 +7,9 @@ ENV LC_ALL C
 ENV DEBIAN_FRONTEND noninteractive
 ENV PERL_CPANM_OPT --mirror http://ftp.acc.umu.se/mirror/CPAN/
 
-RUN apt-get -qq update \
+RUN echo "force-unsafe-io" > /etc/dpkg/dpkg.cfg.d/02apt-speedup \
+		&& \
+		apt-get -qq update \
 		&& \
 		apt-get -y --no-install-recommends install \
 		build-essential \
