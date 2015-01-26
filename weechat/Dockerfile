@@ -11,6 +11,7 @@ RUN useradd -m -u 1000 -U wc
 RUN apt-get -qq update \
 		&& \
 		apt-get install -y --no-install-recommends \
+		curl \
 		libnotify-bin \
 		perl \
 		python-potr \
