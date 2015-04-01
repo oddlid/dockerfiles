@@ -1,6 +1,3 @@
-# 2015-03-31 15:45:41
-# Trying to create a Docker image from the Graphite install scripts Tobbe gave me.
-
 FROM centos:centos6
 MAINTAINER Odd E. Ebbesen
 
@@ -53,30 +50,3 @@ VOLUME ["/opt/graphite/storage/whisper", "/opt/graphite/storage/log", "/opt/grap
 
 COPY entrypoint.sh /usr/local/bin/
 
-
-# The instructions below should be adjusted for Docker usage
-#RUN cd /opt/graphite/conf \
-#		&& \
-#		cp carbon.conf.example carbon.conf \
-#		&& \
-#		cp storage-schemas.conf.example storage-schemas.conf \
-#		&& \
-#		cd - \
-#		&& \
-#		/opt/graphite/bin/carbon-cache.py start
-#
-#RUN cd /opt/graphite/webapp/graphite \
-#		&& \
-#		cp local_settings.py.example local_settings.py \
-#		&& \
-#		python manage.py syncdb --noinput \
-#		&& \
-#		cd - \
-#		&& \
-#		cd /opt/graphite/conf \
-#		&& \
-#		cp graphite.wsgi.example graphite.wsgi \
-#		&& \
-#		cd - \
-#		&& \
-#		cp /opt/graphite/examples/example-graphite-vhost.conf /etc/httpd/conf.d/graphite.conf
