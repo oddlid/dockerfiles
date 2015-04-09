@@ -1,8 +1,16 @@
 FROM centos:centos6
 MAINTAINER Odd E. Ebbesen
 
-RUN rpm -ivh http://dl.fedoraproject.org/pub/epel/6/x86_64/epel-release-6-8.noarch.rpm
-RUN yum install -y \
+ENV GR_C carbon
+ENV GR_G graphite-web
+ENV GR_TAG tags/0.9.13-pre1
+ENV GR_BASEURL https://github.com/graphite-project
+
+WORKDIR /tmp/
+
+RUN rpm -ivh http://dl.fedoraproject.org/pub/epel/6/x86_64/epel-release-6-8.noarch.rpm \
+		&& \
+		yum install -y \
 		bitmap-* \
 		gcc \
 		git \
@@ -11,19 +19,13 @@ RUN yum install -y \
 		mod_wsgi \
 		openldap-devel \
 		pycairo-devel \
-		python-pip
-
-ENV GR_C carbon
-ENV GR_G graphite-web
-ENV GR_TAG tags/0.9.13-pre1
-ENV GR_BASEURL https://github.com/graphite-project
-
-WORKDIR /tmp/
-
-RUN git clone ${GR_BASEURL}/${GR_C}.git
-RUN git clone ${GR_BASEURL}/${GR_G}.git
-
-RUN cd ${GR_C} \
+		python-pip \
+		&& \
+		git clone ${GR_BASEURL}/${GR_C}.git \
+		&& \
+		git clone ${GR_BASEURL}/${GR_G}.git \
+		&& \
+		cd ${GR_C} \
 		&& \
 		git checkout ${GR_TAG} \
 		&& \
@@ -31,9 +33,9 @@ RUN cd ${GR_C} \
 		&& \
 		python setup.py install \
 		&& \
-		cd -
-
-RUN cd ${GR_G} \
+		cd - \
+		&& \
+		cd ${GR_G} \
 		&& \
 		git checkout ${GR_TAG} \
 		&& \
@@ -41,9 +43,15 @@ RUN cd ${GR_G} \
 		&& \
 		python setup.py install \
 		&& \
-		cd -
+		cd - \
+		&& \
+		rm -rf ./${GR_C} ./${GR_G} \
+		&& \
+		yum clean all \
+		&& \
+		chown -R apache:apache /opt/graphite/storage
 
-RUN chown -R apache:apache /opt/graphite/storage
+WORKDIR /opt/graphite
 
 EXPOSE 80 2003 2004
 VOLUME ["/opt/graphite/storage/whisper", "/opt/graphite/storage/log", "/opt/graphite/storage/rrd"]
