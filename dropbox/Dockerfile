@@ -1,10 +1,35 @@
 FROM debian:jessie
 MAINTAINER Odd Eivind Ebbesen <odd@oddware.net>
 
-COPY init /usr/local/bin/
-COPY bootstrap.sh /root/
-RUN cd /root && chmod 755 ./bootstrap.sh && ./bootstrap.sh
+ENV DEBIAN_FRONTEND noninteractive
 
-VOLUME ["/home/dropbox/config", "/home/dropbox/Dropbox"]
+
+RUN apt-get update -qq \
+		&& \
+		apt-get install -y --no-install-recommends \
+		wget openssl gnutls-bin ca-certificates \
+		&& \
+		ln -sT /etc/ssl /usr/ssl \
+		&& \
+		useradd -m -u 1000 dropbox \
+		&& \
+		wget -nv -O /tmp/dropbox.tgz https://www.dropbox.com/download?plat=lnx.x86_64 \
+		&& \
+		tar -xzf /tmp/dropbox.tgz -C /usr/local \
+		&& \
+		mv /usr/local/.dropbox-dist /usr/local/dropbox-dist \
+		&& \
+		ln -s /usr/local/dropbox-dist/dropboxd /usr/local/bin/ \
+		&& \
+		rm -f /tmp/dropbox.tgz \
+		&& \
+		apt-get clean autoclean \
+		&& \
+		apt-get autoremove -y \
+		&& \
+		rm -rf /var/lib/{apt,dpkg,cache,log}/
+
+VOLUME ["/home/dropbox/Dropbox"]
 EXPOSE 17500
-CMD ["/usr/local/bin/init"]
+USER dropbox
+CMD ["/usr/local/bin/dropboxd"]

@@ -4,7 +4,7 @@
 export DEBIAN_FRONTEND=noninteractive
 ln -fs /usr/share/zoneinfo/Europe/Stockholm /etc/localtime
 apt-get update -qq
-apt-get install -y --only-upgrade bash
+#apt-get install -y --only-upgrade bash
 apt-get install -y --no-install-recommends wget openssl gnutls-bin ca-certificates
 ln -sT /etc/ssl /usr/ssl
 useradd -m dropbox
