@@ -7,9 +7,15 @@ ENV DEBIAN_FRONTEND noninteractive
 RUN apt-get update -qq \
 		&& \
 		apt-get install -y --no-install-recommends \
-		wget openssl gnutls-bin ca-certificates \
+		ca-certificates \
+		gnutls-bin \
+		openssl \
+		python2.7 \
+		wget \
 		&& \
 		ln -sT /etc/ssl /usr/ssl \
+		&& \
+		ln -s /usr/bin/python2.7 /usr/bin/python \
 		&& \
 		useradd -m -u 1000 dropbox \
 		&& \
@@ -24,6 +30,8 @@ RUN apt-get update -qq \
 		rm -f /tmp/dropbox.tgz \
 		&& \
 		wget -nv -O /usr/local/bin/dropbox-cli https://linux.dropbox.com/packages/dropbox.py \
+		&& \
+		chmod 755 /usr/local/bin/dropbox-cli \
 		&& \
 		apt-get clean autoclean \
 		&& \
