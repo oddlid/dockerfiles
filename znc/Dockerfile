@@ -2,7 +2,7 @@ FROM debian:jessie
 MAINTAINER Odd E. Ebbesen <oddebb@gmail.com>
 
 ENV DEBIAN_FRONTEND noninteractive
-ENV ZNC_VERSION 1.6
+ENV ZNC_VERSION 1.6.0
 
 RUN ln -fs /usr/share/zoneinfo/Europe/Stockholm /etc/localtime
 RUN useradd -u 1000 -U znc
