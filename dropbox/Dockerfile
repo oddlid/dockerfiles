@@ -23,6 +23,8 @@ RUN apt-get update -qq \
 		&& \
 		rm -f /tmp/dropbox.tgz \
 		&& \
+		wget -nv -O /usr/local/bin/dropbox-cli https://linux.dropbox.com/packages/dropbox.py \
+		&& \
 		apt-get clean autoclean \
 		&& \
 		apt-get autoremove -y \
