@@ -3,6 +3,7 @@ set -e
 
 on_die() {
 	echo "Stopping..."
+	killall ddclient
 	exit 0
 }
 
