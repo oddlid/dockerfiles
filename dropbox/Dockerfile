@@ -25,6 +25,8 @@ RUN apt-get update -qq \
 		&& \
 		mv /usr/local/.dropbox-dist /usr/local/dropbox-dist \
 		&& \
+		chown -R dropbox /usr/local/dropbox-dist \
+		&& \
 		ln -s /usr/local/dropbox-dist/dropboxd /usr/local/bin/ \
 		&& \
 		rm -f /tmp/dropbox.tgz \
