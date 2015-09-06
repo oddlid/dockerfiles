@@ -1,0 +1,18 @@
+archcli:
+    build: cli/.
+
+archdesktop:
+    build: desktop/.
+
+# Run this after starting squid:
+# iptables -t nat -A PREROUTING -p tcp --dport 80 -j REDIRECT --to 3129 -w
+# And this after stopping squid:
+# iptables -t nat -D PREROUTING -p tcp --dport 80 -j REDIRECT --to 3129 -w
+squid:
+    image: jpetazzo/squid-in-a-can
+    net: "host"
+    volumes:
+        - /tmp/squid-cache:/var/cache/squid3
+    environment:
+        DISK_CACHE_SIZE: 5000
+        MAX_CACHE_OBJECT: 1024

@@ -1,0 +1,9 @@
+## Sweden
+Server = http://ftp.acc.umu.se/mirror/archlinux/$repo/os/$arch
+Server = http://ftp.df.lth.se/pub/archlinux/$repo/os/$arch
+Server = http://archlinux.dynamict.se/$repo/os/$arch
+Server = http://ftp.lysator.liu.se/pub/archlinux/$repo/os/$arch
+Server = https://ftp.lysator.liu.se/pub/archlinux/$repo/os/$arch
+Server = http://ftp.myrveln.se/pub/linux/archlinux/$repo/os/$arch
+Server = https://ftp.myrveln.se/pub/linux/archlinux/$repo/os/$arch
+Server = http://ftp.portlane.com/pub/os/linux/archlinux/$repo/os/$arch
