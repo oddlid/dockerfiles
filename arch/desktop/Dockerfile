@@ -72,6 +72,4 @@ RUN pacman -R --noconfirm --nodeps --nodeps vim \
 
 #		&& \
 #		sudo -u oddee yaourt -S --noconfirm --needed google-chrome \
-CMD ["bash"]
-
-
+#CMD ["bash"]

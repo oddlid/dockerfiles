@@ -22,6 +22,7 @@ RUN pacman -S --noconfirm --needed \
 		ansible \
 		antiword \
 		arch-install-scripts \
+		arj \
 		aspell \
 		autoconf \
 		automake \
@@ -32,6 +33,7 @@ RUN pacman -S --noconfirm --needed \
 		cabextract \
 		cdrkit \
 		cpanminus \
+		cpio \
 		cvs \
 		ddclient \
 		dnsmasq \
@@ -54,6 +56,7 @@ RUN pacman -S --noconfirm --needed \
 		lbzip2 \
 		lesspipe \
 		lsof \
+		lzop \
 		m4 \
 		make \
 		mc \
