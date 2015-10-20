@@ -22,7 +22,6 @@ RUN pacman -S --noconfirm --needed \
 		ansible \
 		antiword \
 		arch-install-scripts \
-		arj \
 		aspell \
 		autoconf \
 		automake \
