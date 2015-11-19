@@ -2,7 +2,7 @@
 # Odd, 2014-11-03 14:05:59
 
 FROM centos:centos6
-MAINTAINER Odd E. Ebbesen
+MAINTAINER Odd E. Ebbesen <oddebb@gmail.com>
 
 ENV OP5_VERSION 6.3.2
 
