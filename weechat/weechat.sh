@@ -13,4 +13,6 @@ WC_USER=wc
 #		chown -R $WC_USER /home/$WC_USER
 #	fi
 #fi
-sudo -u $WC_USER "LANG=$WC_LANG TERM=$WC_TERM weechat $*"
+export LANG=$WC_LANG
+export TERM=$WC_TERM
+sudo -u $WC_USER -E weechat $*
