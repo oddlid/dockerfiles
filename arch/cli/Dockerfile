@@ -14,7 +14,7 @@ COPY mirrorlist /etc/pacman.d/mirrorlist
 COPY locale.conf locale.gen vconsole.conf /etc/ 
 
 RUN echo -e "[archlinuxfr]\nSigLevel = Optional\nServer = http://repo.archlinux.fr/\$arch" >>/etc/pacman.conf
-RUN groupadd sudo
+RUN groupadd -g 1666 sudo
 RUN useradd -G sudo oddee
 RUN locale-gen
 RUN pacman -Syy
