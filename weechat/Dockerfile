@@ -11,6 +11,7 @@ RUN apk add --update \
 		openssl \
 		perl \
 		python \
+		sudo \
 		tcl \
 		weechat \
 		wget \
