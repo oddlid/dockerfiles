@@ -36,7 +36,6 @@ RUN pacman -S --noconfirm --needed \
 		cvs \
 		ddclient \
 		dnsmasq \
-		docker \
 		dtach \
 		ed \
 		elinks \
