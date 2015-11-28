@@ -5,6 +5,7 @@ ENV LC_ALL C
 COPY weechat.sh /usr/local/bin/
 RUN addgroup -g 1000 wc && adduser -u 1000 -G wc -D wc
 RUN apk add --update \
+		bash \
 		ca-certificates \
 		curl \
 		openssl \
