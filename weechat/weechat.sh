@@ -15,4 +15,4 @@ WC_USER=wc
 #fi
 export LANG=$WC_LANG
 export TERM=$WC_TERM
-sudo -u $WC_USER -E weechat $*
+sudo -E -u $WC_USER -H /usr/bin/weechat-curses $*
