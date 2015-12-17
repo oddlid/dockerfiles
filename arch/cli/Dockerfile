@@ -61,6 +61,7 @@ RUN pacman -S --noconfirm --needed \
 		mercurial \
 		msmtp-mta \
 		nmap \
+		nodejs \
 		nss \
 		openbsd-netcat \
 		openssh \
