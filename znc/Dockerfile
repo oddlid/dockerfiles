@@ -2,9 +2,8 @@ FROM debian:jessie
 MAINTAINER Odd E. Ebbesen <oddebb@gmail.com>
 
 ENV DEBIAN_FRONTEND noninteractive
-ENV ZNC_VERSION 1.6.1
+ENV ZNC_VERSION 1.6.2
 
-RUN ln -fs /usr/share/zoneinfo/Europe/Stockholm /etc/localtime
 RUN useradd -u 1000 -U znc
 COPY start-znc /usr/local/bin/
 COPY znc.conf.default /src/
@@ -45,5 +44,5 @@ RUN cd /src \
 
 EXPOSE 6664 6665 6666 6667
 VOLUME ["/znc-data"]
-ENTRYPOINT ["/usr/local/bin/start-znc"]
+CMD ["/usr/local/bin/start-znc"]
 
