@@ -35,13 +35,16 @@ RUN apt-get update -qq \
 		&& \
 		chmod 755 /usr/local/bin/dropbox-cli \
 		&& \
+		wget -O /usr/local/bin/dumb-init https://github.com/Yelp/dumb-init/releases/download/v1.0.0/dumb-init_1.0.0_amd64 \
+		&& \
+		chmod 755 /usr/local/bin/dumb-init \
+		&& \
 		apt-get clean autoclean \
 		&& \
 		apt-get autoremove -y \
 		&& \
 		rm -rf /var/lib/{apt,dpkg,cache,log}/
 
-RUN wget -O /usr/local/bin/dumb-init https://github.com/Yelp/dumb-init/releases/download/v1.0.0/dumb-init_1.0.0_amd64
 
 VOLUME ["/home/dropbox/Dropbox"]
 EXPOSE 17500
