@@ -18,7 +18,9 @@ RUN apt-get update -qq --fix-missing \
 	&& \
 	apt-get autoremove -y \
 	&& \
-	rm -rf /var/lib/{apt,dpkg,cache,log}/ /tmp/* /var/tmp/*
+	rm -rf /var/lib/{apt,dpkg,cache,log}/ /tmp/* /var/tmp/* \
+	&& \
+	mkdir -p /src
 
 RUN cd /src \
 	&& \
@@ -38,8 +40,13 @@ RUN cd /src \
 	&& \
 	rm -rf znc-${ZNC_VERSION}*
 
-RUN curl -sL -o /usr/local/bin/dumb-init https://github.com/Yelp/dumb-init/releases/download/v1.0.0/dumb-init_1.0.0_amd64
-RUN curl -sL -o /usr/local/bin/gosu https://github.com/tianon/gosu/releases/download/1.7/gosu-amd64
+RUN curl -sL -o /usr/local/bin/dumb-init https://github.com/Yelp/dumb-init/releases/download/v1.0.0/dumb-init_1.0.0_amd64 \
+	&& \
+	chmod 755 /usr/local/bin/dumb-init \
+	&& \
+	curl -sL -o /usr/local/bin/gosu https://github.com/tianon/gosu/releases/download/1.7/gosu-amd64 \
+	&& \
+	chmod 755 /usr/local/bin/gosu
 
 RUN useradd -u 1000 -U znc
 COPY start-znc /usr/local/bin/

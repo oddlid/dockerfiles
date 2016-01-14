@@ -51,8 +51,13 @@ RUN rpm -ivh http://dl.fedoraproject.org/pub/epel/6/x86_64/epel-release-6-8.noar
 		&& \
 		chown -R apache:apache /opt/graphite/storage
 
-RUN curl -sL -o /usr/local/bin/dumb-init https://github.com/Yelp/dumb-init/releases/download/v1.0.0/dumb-init_1.0.0_amd64
-RUN curl -sL -o /usr/local/bin/gosu https://github.com/tianon/gosu/releases/download/1.7/gosu-amd64
+RUN curl -sL -o /usr/local/bin/dumb-init https://github.com/Yelp/dumb-init/releases/download/v1.0.0/dumb-init_1.0.0_amd64 \
+		&& \
+		chmod 755 /usr/local/bin/dumb-init \
+		&& \
+		curl -sL -o /usr/local/bin/gosu https://github.com/tianon/gosu/releases/download/1.7/gosu-amd64 \
+		&& \
+		chmod 755 /usr/local/bin/gosu
 
 WORKDIR /opt/graphite
 
