@@ -15,9 +15,10 @@ RUN apt-get -qq update \
 		&& \
 		rm -rf /var/lib/{apt,dpkg,cache,log}/
 
+RUN curl -sL -o /usr/local/bin/dumb-init https://github.com/Yelp/dumb-init/releases/download/v1.0.0/dumb-init_1.0.0_amd64
+
 COPY ngircd.conf /etc/ngircd/ngircd.conf
 
 VOLUME ["/etc/ngircd"]
 EXPOSE 6668
-ENTRYPOINT ["/usr/sbin/ngircd"]
-CMD ["-n"]
+CMD ["/usr/local/bin/dumb-init", "/usr/sbin/ngircd", "-n"]

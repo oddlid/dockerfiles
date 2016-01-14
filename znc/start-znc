@@ -38,4 +38,4 @@ fi
 chown -R znc:znc "$DATADIR"
 
 # Start ZNC.
-exec su - znc -c "znc --foreground --datadir=$DATADIR $@"
+exec gosu znc znc --foreground --datadir=$DATADIR "$@"

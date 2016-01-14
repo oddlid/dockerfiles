@@ -4,10 +4,6 @@ MAINTAINER Odd E. Ebbesen <oddebb@gmail.com>
 ENV DEBIAN_FRONTEND noninteractive
 ENV ZNC_VERSION 1.6.2
 
-RUN useradd -u 1000 -U znc
-COPY start-znc /usr/local/bin/
-COPY znc.conf.default /src/
-
 RUN apt-get update -qq --fix-missing \
 	&& \
 	apt-get install -y --no-install-recommends \
@@ -42,7 +38,14 @@ RUN cd /src \
 	&& \
 	rm -rf znc-${ZNC_VERSION}*
 
+RUN curl -sL -o /usr/local/bin/dumb-init https://github.com/Yelp/dumb-init/releases/download/v1.0.0/dumb-init_1.0.0_amd64
+RUN curl -sL -o /usr/local/bin/gosu https://github.com/tianon/gosu/releases/download/1.7/gosu-amd64
+
+RUN useradd -u 1000 -U znc
+COPY start-znc /usr/local/bin/
+COPY znc.conf.default /src/
+
 EXPOSE 6664 6665 6666 6667
 VOLUME ["/znc-data"]
-CMD ["/usr/local/bin/start-znc"]
+CMD ["/usr/local/bin/dumb-init", "/usr/local/bin/start-znc"]
 

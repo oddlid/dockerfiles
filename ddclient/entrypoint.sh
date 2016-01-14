@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/usr/local/bin/dumb-init /bin/bash
 set -e
 
 on_die() {
@@ -7,7 +7,7 @@ on_die() {
 	exit 0
 }
 
-trap 'on_die' TERM SIGINT
+trap 'on_die' HUP INT QUIT KILL TERM
 
 case "$1" in
 	ddclient)

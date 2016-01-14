@@ -19,7 +19,7 @@ case "$1" in
 			mkdir -p "$DB_DIR"
 			chown $G_USER "$DB_DIR"
 		fi
-		su - $G_USER -c "gmvault $* --db-dir $DB_DIR"
+		exec gosu $G_USER gmvault $* --db-dir $DB_DIR
 		;;
 	*)
 		exec $*

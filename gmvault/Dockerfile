@@ -22,6 +22,8 @@ RUN apt-get update -qq --fix-missing \
 		&& \
 		rm -rf /var/lib/{apt,dpkg,cache,log}/
 
+RUN curl -sL -o /usr/local/bin/gosu https://github.com/tianon/gosu/releases/download/1.7/gosu-amd64
+
 COPY gmvault.sh /usr/local/bin/
 RUN chmod 755 /usr/local/bin/gmvault.sh
 RUN useradd -m -u 1000 -U gmvault
