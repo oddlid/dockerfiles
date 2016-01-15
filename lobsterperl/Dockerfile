@@ -13,6 +13,7 @@ RUN echo "force-unsafe-io" > /etc/dpkg/dpkg.cfg.d/02apt-speedup \
 		&& \
 		apt-get -y --no-install-recommends install \
 		build-essential \
+		ca-certificates \
 		cpanminus \
 		libcrypt-ssleay-perl \
 		libnet-ssleay-perl \		
