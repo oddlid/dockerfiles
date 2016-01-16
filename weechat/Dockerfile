@@ -26,4 +26,4 @@ RUN curl -sL -o /usr/local/bin/dumb-init https://github.com/Yelp/dumb-init/relea
 		chmod 755 /usr/local/bin/gosu
 
 COPY weechat.sh /usr/local/bin/
-CMD ["/usr/local/bin/weechat.sh"]
+CMD ["/usr/local/bin/dumb-init", "/usr/local/bin/weechat.sh"]
