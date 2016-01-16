@@ -8,6 +8,7 @@ RUN apt-get update -qq --fix-missing \
 	&& \
 	apt-get install -y --no-install-recommends \
 	build-essential \
+	ca-certificates \
 	curl \
 	libcurl4-openssl-dev \
 	libperl-dev \
