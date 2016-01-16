@@ -6,6 +6,8 @@ MAINTAINER Odd E. Ebbesen <oddebb@gmail.com>
 RUN apt-get update -qq \
 	&& \
 	apt-get install -y --no-install-recommends \
+	ca-certificates \
+	curl \
 	python2.7 \
 	python-setuptools \
 	python-simplejson \
