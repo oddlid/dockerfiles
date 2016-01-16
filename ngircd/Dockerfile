@@ -7,7 +7,9 @@ ENV LC_ALL C
 
 RUN apt-get -qq update \
 		&& \
-		apt-get install -y --no-install-recommends ngircd \
+		apt-get install -y --no-install-recommends \
+		ca-certificates \
+		ngircd \
 		&& \
 		apt-get clean autoclean \
 		&& \
@@ -21,6 +23,6 @@ RUN curl -sL -o /usr/local/bin/dumb-init https://github.com/Yelp/dumb-init/relea
 
 COPY ngircd.conf /etc/ngircd/ngircd.conf
 
-VOLUME ["/etc/ngircd"]
+#VOLUME ["/etc/ngircd"]
 EXPOSE 6668
 CMD ["/usr/local/bin/dumb-init", "/usr/sbin/ngircd", "-n"]
