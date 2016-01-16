@@ -6,7 +6,10 @@ MAINTAINER Odd E. Ebbesen <oddebb@gmail.com>
 RUN apt-get -qq update \
 		&& \
 		apt-get -y --no-install-recommends install \
-		libreadline-dev libexpat1-dev libxml2-dev \
+		libexpat1-dev \
+		libncurses5-dev \
+		libreadline6-dev \
+		libxml2-dev \
 		&& \
 		apt-get clean autoclean \
 		&& \
@@ -14,4 +17,6 @@ RUN apt-get -qq update \
 		&& \
 		rm -rf /var/lib/{apt,dpkg,cache,log}/
 
+RUN cpanm Term::Size
+RUN cpanm --force Term::ReadKey
 RUN cpanm JMX::Jmx4Perl
