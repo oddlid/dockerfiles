@@ -1,14 +1,12 @@
-FROM debian:jessie
+FROM oddlid/debian-base:latest
 MAINTAINER Odd E. Ebbesen <oddebb@gmail.com>
 
-ENV DEBIAN_FRONTEND noninteractive
 ENV OPENFIRE_VERSION 3.9.3
 
 RUN apt-get update -qq \
 		&& \
 		apt-get install -y --no-install-recommends \
 		openjdk-7-jre \
-		curl \
 		&& \
 		curl -L "http://www.igniterealtime.org/downloadServlet?filename=openfire/openfire_${OPENFIRE_VERSION}_all.deb" \
 		-o /tmp/openfire_${OPENFIRE_VERSION}_all.deb \
@@ -28,4 +26,4 @@ EXPOSE 3478 3479 5222 5223 5229 7070 7443 7777 9090 9091
 
 COPY entrypoint.sh /usr/local/bin/
 
-ENTRYPOINT ["/usr/local/bin/entrypoint.sh"]
+ENTRYPOINT ["/usr/local/bin/dumb-init", "/usr/local/bin/entrypoint.sh"]

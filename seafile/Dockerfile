@@ -1,13 +1,11 @@
 # See jenserat/seafile for more details
 
-FROM debian:jessie
+FROM oddlid/debian-base:latest
 MAINTAINER Odd E. Ebbesen <oddebb@gmail.com>
 
 RUN apt-get update -qq \
 	&& \
 	apt-get install -y --no-install-recommends \
-	ca-certificates \
-	curl \
 	python2.7 \
 	python-setuptools \
 	python-simplejson \
@@ -24,10 +22,6 @@ RUN apt-get update -qq \
 	apt-get autoremove -y \
 	&& \
 	rm -rf /var/lib/{apt,dpkg,cache,log}/
-
-RUN curl -sL -o /usr/local/bin/dumb-init https://github.com/Yelp/dumb-init/releases/download/v1.0.0/dumb-init_1.0.0_amd64 \
-		&& \
-		chmod 755 /usr/local/bin/dumb-init
 
 COPY start_seafile.sh /usr/local/bin/
 VOLUME ["/opt/seafile", "/var/log"]

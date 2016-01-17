@@ -1,14 +1,12 @@
-FROM debian:jessie
+FROM oddlid/debian-base:latest
 MAINTAINER Odd Eivind Ebbesen <oddebb@gmail.com>
 
-ENV DEBIAN_FRONTEND noninteractive
 # Change this to your preference
 RUN ln -fs /usr/share/zoneinfo/Europe/Stockholm /etc/localtime
 
 RUN apt-get update -qq --fix-missing \
 		&& \
 		apt-get install -y --no-install-recommends \
-		build-essential \
 		python2.7 \
 		python2.7-dev \
 		python-pip \
@@ -22,16 +20,12 @@ RUN apt-get update -qq --fix-missing \
 		&& \
 		rm -rf /var/lib/{apt,dpkg,cache,log}/
 
-RUN curl -sL -o /usr/local/bin/gosu https://github.com/tianon/gosu/releases/download/1.7/gosu-amd64 \
-		&& \
-		chmod 755 /usr/local/bin/gosu
-
 COPY gmvault.sh /usr/local/bin/
 RUN chmod 755 /usr/local/bin/gmvault.sh
 RUN useradd -m -u 1000 -U gmvault
 
 VOLUME ["/home/gmvault/.gmvault", "/home/gmvault/gmvault-db"]
 
-ENTRYPOINT ["/usr/local/bin/gmvault.sh"]
+ENTRYPOINT ["/usr/local/bin/dumb-init", "/usr/local/bin/gmvault.sh"]
 CMD ["bash"]
 

@@ -1,15 +1,11 @@
-FROM debian:jessie
+FROM oddlid/debian-base:latest
 MAINTAINER Odd E. Ebbesen <oddebb@gmail.com>
 
-ENV DEBIAN_FRONTEND noninteractive
 ENV ZNC_VERSION 1.6.2
 
 RUN apt-get update -qq --fix-missing \
 	&& \
 	apt-get install -y --no-install-recommends \
-	build-essential \
-	ca-certificates \
-	curl \
 	libcurl4-openssl-dev \
 	libperl-dev \
 	libssl-dev \
@@ -40,14 +36,6 @@ RUN cd /src \
 	cd - \
 	&& \
 	rm -rf znc-${ZNC_VERSION}*
-
-RUN curl -sL -o /usr/local/bin/dumb-init https://github.com/Yelp/dumb-init/releases/download/v1.0.0/dumb-init_1.0.0_amd64 \
-	&& \
-	chmod 755 /usr/local/bin/dumb-init \
-	&& \
-	curl -sL -o /usr/local/bin/gosu https://github.com/tianon/gosu/releases/download/1.7/gosu-amd64 \
-	&& \
-	chmod 755 /usr/local/bin/gosu
 
 RUN useradd -u 1000 -U znc
 COPY start-znc /usr/local/bin/

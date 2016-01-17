@@ -1,17 +1,12 @@
-FROM debian:jessie
+FROM oddlid/debian-base:latest
 MAINTAINER Odd Eivind Ebbesen <odd@oddware.net>
-
-ENV DEBIAN_FRONTEND noninteractive
-
 
 RUN apt-get update -qq \
 		&& \
 		apt-get install -y --no-install-recommends \
-		ca-certificates \
 		gnutls-bin \
 		openssl \
 		python2.7 \
-		wget \
 		&& \
 		ln -sT /etc/ssl /usr/ssl \
 		&& \
@@ -34,10 +29,6 @@ RUN apt-get update -qq \
 		wget -nv -O /usr/local/bin/dropbox-cli https://linux.dropbox.com/packages/dropbox.py \
 		&& \
 		chmod 755 /usr/local/bin/dropbox-cli \
-		&& \
-		wget -O /usr/local/bin/dumb-init https://github.com/Yelp/dumb-init/releases/download/v1.0.0/dumb-init_1.0.0_amd64 \
-		&& \
-		chmod 755 /usr/local/bin/dumb-init \
 		&& \
 		apt-get clean autoclean \
 		&& \
