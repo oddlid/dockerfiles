@@ -8,6 +8,7 @@ RUN apt-get update -qq --fix-missing \
 	apt-get install -y --no-install-recommends \
 	libcurl4-openssl-dev \
 	libperl-dev \
+	libsasl2-dev \
 	libssl-dev \
 	pkg-config \
 	&& \
@@ -27,7 +28,7 @@ RUN cd /src \
 	&& \
 	cd znc-${ZNC_VERSION} \
 	&& \
-	./configure --enable-perl \
+	./configure --enable-perl --enable-cyrus \
 	&& \
 	make -j $(nproc) \
 	&& \
