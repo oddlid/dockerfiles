@@ -1,4 +1,4 @@
-FROM alpine:3.2
+FROM alpine:3.3
 MAINTAINER Odd E. Ebbesen <oddebb@gmail.com>
 ENV LANG C.UTF-8
 ENV LC_ALL C
