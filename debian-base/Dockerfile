@@ -22,7 +22,7 @@ RUN echo "force-unsafe-io" > /etc/dpkg/dpkg.cfg.d/02apt-speedup \
 		&& \
 		rm -rf /var/lib/{apt,dpkg,cache,log}/
 
-RUN curl -sL -o /usr/local/bin/dumb-init https://github.com/Yelp/dumb-init/releases/download/v1.0.0/dumb-init_1.0.0_amd64 \
+RUN curl -sL -o /usr/local/bin/dumb-init https://github.com/Yelp/dumb-init/releases/download/v1.0.1/dumb-init_1.0.1_amd64 \
 		&& \
 		chmod 755 /usr/local/bin/dumb-init \
 		&& \

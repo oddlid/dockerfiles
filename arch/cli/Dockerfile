@@ -3,9 +3,9 @@
 FROM dock0/service
 MAINTAINER Odd E. Ebbesen <oddebb@gmail.com>
 
-ENV EDITOR /usr/bin/vim
 ENV PAGER /usr/bin/less
-ENV VISUAL /usr/bin/less
+ENV EDITOR /usr/bin/vim
+ENV VISUAL /usr/bin/vim
 ENV LANG sv_SE.UTF-8
 ENV REPORTTIME 5
 ENV TIMEFMT %U user, %S system, %P cpu, %*Es total
@@ -92,7 +92,7 @@ RUN pacman -S --noconfirm --needed \
 		&& \
 		rm -rf /var/cache/pacman/pkg/*
 
-RUN curl -sL -o /usr/local/bin/dumb-init https://github.com/Yelp/dumb-init/releases/download/v1.0.0/dumb-init_1.0.0_amd64 \
+RUN curl -sL -o /usr/local/bin/dumb-init https://github.com/Yelp/dumb-init/releases/download/v1.0.1/dumb-init_1.0.1_amd64 \
 	&& \
 	chmod 755 /usr/local/bin/dumb-init \
 	&& \
