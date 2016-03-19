@@ -26,6 +26,7 @@ RUN pacman -S --noconfirm --needed \
 		autoconf \
 		automake \
 		bash-completion \
+		bc \
 		bind-tools \
 		binutils \
 		bzr \
