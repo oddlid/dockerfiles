@@ -3,5 +3,5 @@
 
 set -e
 
-#chown -R bitlbee:bitlbee /var/lib/bitlbee
+chown -R bitlbee:bitlbee /var/lib/bitlbee
 exec $@
