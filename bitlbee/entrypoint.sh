@@ -1,16 +1,7 @@
-#!/usr/bin/env bash
+#!/bin/sh
+#/usr/local/bin/dumb-init 
 
 set -e
 
-chown -R bitlbee:bitlbee /var/lib/bitlbee
-
-case "$1" in
-	bb)
-		/usr/sbin/bitlbee
-		while true; do sleep 1h; done
-		;;
-	*)
-		exec $*
-		;;
-esac
-
+#chown -R bitlbee:bitlbee /var/lib/bitlbee
+exec $@
