@@ -6,14 +6,16 @@ MAINTAINER Odd E. Ebbesen <oddebb@gmail.com>
 RUN apt-get update -qq \
 	&& \
 	apt-get install -y --no-install-recommends \
+	libpython2.7 \
 	python2.7 \
+	python-imaging \
+	python-ldap \
+	python-memcache \
+	python-mysqldb \
 	python-setuptools \
 	python-simplejson \
-	python-imaging \
-	sqlite3 \
-	python-mysqldb \
-	python-memcache \
 	socat \
+	sqlite3 \
 	&& \
 	ulimit -n 30000 \
 	&& \
