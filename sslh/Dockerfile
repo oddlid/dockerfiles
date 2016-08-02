@@ -20,4 +20,4 @@ RUN chmod 755 /usr/local/bin/dumb-init
 
 EXPOSE 443
 
-CMD ["/usr/local/bin/dumb-init", "/usr/bin/sslh", "-f", "-u", "root", "-p", "${LISTEN_IP}:${LISTEN_PORT}", "--ssh", "${SSH_HOST}:${SSH_PORT}", "--ssl", "${HTTPS_HOST}:${HTTPS_PORT}", "--openvpn", "${OPENVPN_HOST}:${OPENVPN_PORT}"]
+CMD /usr/local/bin/dumb-init /usr/bin/sslh -f -u root -p ${LISTEN_IP}:${LISTEN_PORT} --ssh ${SSH_HOST}:${SSH_PORT} --ssl ${HTTPS_HOST}:${HTTPS_PORT} --openvpn ${OPENVPN_HOST}:${OPENVPN_PORT}
