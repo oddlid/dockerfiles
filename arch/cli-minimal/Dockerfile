@@ -9,6 +9,8 @@ ENV VISUAL /usr/bin/vim
 ENV LANG sv_SE.UTF-8
 ENV REPORTTIME 5
 ENV TIMEFMT %U user, %S system, %P cpu, %*Es total
+ENV GOSU_VERSION 1.9
+ENV DUMBINIT_VERSION 1.1.2
 
 COPY mirrorlist /etc/pacman.d/mirrorlist
 COPY locale.conf locale.gen vconsole.conf /etc/ 
@@ -38,7 +40,6 @@ RUN pacman -S --noconfirm --needed \
 		rsync \
 		screen \
 		strace \
-		sslh \
 		sudo \
 		tmux \
 		unzip \
@@ -52,11 +53,11 @@ RUN pacman -S --noconfirm --needed \
 		&& \
 		rm -rf /var/cache/pacman/pkg/*
 
-RUN curl -sL -o /usr/local/bin/dumb-init https://github.com/Yelp/dumb-init/releases/download/v1.0.1/dumb-init_1.0.1_amd64 \
+RUN curl -sL -o /usr/local/bin/dumb-init https://github.com/Yelp/dumb-init/releases/download/v${DUMBINIT_VERSION}/dumb-init_${DUMBINIT_VERSION}_amd64 \
 	&& \
 	chmod 755 /usr/local/bin/dumb-init \
 	&& \
-	curl -sL -o /usr/local/bin/gosu https://github.com/tianon/gosu/releases/download/1.7/gosu-amd64 \
+	curl -sL -o /usr/local/bin/gosu https://github.com/tianon/gosu/releases/download/${GOSU_VERSION}/gosu-amd64 \
 	&& \
 	chmod 755 /usr/local/bin/gosu
 
