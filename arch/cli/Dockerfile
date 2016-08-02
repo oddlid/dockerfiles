@@ -7,6 +7,8 @@ RUN pacman -S --noconfirm --needed \
 		ansible \
 		antiword \
 		aspell \
+		bc \
+		bind-tools \
 		bzr \
 		cabextract \
 		cdrkit \
@@ -15,14 +17,24 @@ RUN pacman -S --noconfirm --needed \
 		cvs \
 		ddclient \
 		dnsmasq \
+		dtach \
 		ed \
 		elinks \
 		fakeroot \
 		fastjar \
+		go \
+		godep \
 		html2text \
+		htop \
+		ipcalc \
+		mc \
 		mercurial \
 		msmtp-mta \
+		nmap \
 		nodejs \
+		nss \
+		openbsd-netcat \
+		openssh \
 		p7zip \
 		rpmextract \
 		sipcalc \

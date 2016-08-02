@@ -23,33 +23,22 @@ RUN pacman -S --noconfirm --needed \
 		autoconf \
 		automake \
 		bash-completion \
-		bc \
-		bind-tools \
 		binutils \
-		dtach \
 		file \
 		gcc \
-		go \
-		godep \
-		htop \
 		inetutils \
-		ipcalc \
 		lbzip2 \
 		lesspipe \
 		lsof \
 		lzop \
 		m4 \
 		make \
-		mc \
-		nmap \
-		nss \
-		openbsd-netcat \
-		openssh \
 		patch \
 		pkg-config \
 		rsync \
 		screen \
 		strace \
+		sslh \
 		sudo \
 		tmux \
 		unzip \
