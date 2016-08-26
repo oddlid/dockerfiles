@@ -28,4 +28,4 @@ RUN apt-get update -qq \
 COPY start_seafile.sh /usr/local/bin/
 VOLUME ["/opt/seafile", "/var/log"]
 EXPOSE 8000 8080 8082 10001 12001
-CMD ["/usr/local/bin/dumb-init", "/usr/local/bin/start_seafile.sh"]
+CMD ["/usr/local/bin/start_seafile.sh"]
