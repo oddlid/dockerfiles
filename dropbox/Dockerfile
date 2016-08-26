@@ -40,4 +40,4 @@ RUN apt-get update -qq \
 VOLUME ["/home/dropbox/Dropbox"]
 EXPOSE 17500
 USER dropbox
-CMD ["/usr/local/bin/dumb-init", "/usr/local/bin/dropboxd"]
+CMD ["/usr/local/bin/dropboxd"]

@@ -26,4 +26,4 @@ RUN cpanm \
 		IO::Socket::SSL \
 		Mojolicious
 
-CMD ["/usr/local/bin/dumb-init", "bash"]
+CMD ["bash"]
