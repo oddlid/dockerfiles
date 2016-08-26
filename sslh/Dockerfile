@@ -13,11 +13,16 @@ ENV OPENVPN_HOST localhost
 ENV OPENVPN_PORT 1194
 ENV HTTPS_HOST localhost
 ENV HTTPS_PORT 8443
-ENV DUMBINIT_VERSION 1.1.2
+ENV TINI_VERSION 0.10.0
 
-ADD https://github.com/Yelp/dumb-init/releases/download/v${DUMBINIT_VERSION}/dumb-init_${DUMBINIT_VERSION}_amd64 /usr/local/bin/dumb-init
-RUN chmod 755 /usr/local/bin/dumb-init
+ADD https://github.com/krallin/tini/releases/download/v${TINI_VERSION}/tini-static /usr/local/bin/tini 
+ADD https://github.com/krallin/tini/releases/download/v${TINI_VERSION}/tini-static.asc /usr/local/bin/tini-static.asc 
+RUN gpg --keyserver ha.pool.sks-keyservers.net --recv-keys 0527A9B7 \
+	&& \
+	gpg --verify /usr/local/bin/tini-static.asc /usr/local/bin/tini \
+	chmod 755 /usr/local/bin/tini
 
 EXPOSE 443
 
-CMD /usr/local/bin/dumb-init /usr/bin/sslh -f -u root -p ${LISTEN_IP}:${LISTEN_PORT} --ssh ${SSH_HOST}:${SSH_PORT} --ssl ${HTTPS_HOST}:${HTTPS_PORT} --openvpn ${OPENVPN_HOST}:${OPENVPN_PORT}
+ENTRYPOINT ["/usr/local/bin/tini", "-g", "--"]
+CMD /usr/bin/sslh -f -u root -p ${LISTEN_IP}:${LISTEN_PORT} --ssh ${SSH_HOST}:${SSH_PORT} --ssl ${HTTPS_HOST}:${HTTPS_PORT} --openvpn ${OPENVPN_HOST}:${OPENVPN_PORT}

@@ -3,7 +3,14 @@
 FROM nginx:latest
 MAINTAINER Odd E. Ebbesen <oddebb@gmail.com>
 
-ADD https://github.com/Yelp/dumb-init/releases/download/v1.0.1/dumb-init_1.0.1_amd64 /usr/local/bin/dumb-init
-RUN chmod 755 /usr/local/bin/dumb-init
+ENV TINI_VERSION 0.10.0
 
-CMD ["/usr/local/bin/dumb-init", "-c" "/usr/sbin/nginx", "-g" "daemon off;"]
+ADD https://github.com/krallin/tini/releases/download/v${TINI_VERSION}/tini-static /usr/local/bin/tini 
+ADD https://github.com/krallin/tini/releases/download/v${TINI_VERSION}/tini-static.asc /usr/local/bin/tini-static.asc 
+RUN gpg --keyserver ha.pool.sks-keyservers.net --recv-keys 0527A9B7 \
+	&& \
+	gpg --verify /usr/local/bin/tini-static.asc /usr/local/bin/tini \
+	chmod 755 /usr/local/bin/tini
+
+ENTRYPOINT ["/usr/local/bin/tini", "-g", "--"]
+CMD ["/usr/sbin/nginx", "-g", "daemon off;"]

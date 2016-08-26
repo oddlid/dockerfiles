@@ -10,7 +10,7 @@ ENV LANG sv_SE.UTF-8
 ENV REPORTTIME 5
 ENV TIMEFMT %U user, %S system, %P cpu, %*Es total
 ENV GOSU_VERSION 1.9
-ENV DUMBINIT_VERSION 1.1.2
+ENV TINI_VERSION 0.10.0
 
 COPY mirrorlist /etc/pacman.d/mirrorlist
 COPY locale.conf locale.gen vconsole.conf /etc/ 
@@ -53,17 +53,22 @@ RUN pacman -S --noconfirm --needed \
 		&& \
 		rm -rf /var/cache/pacman/pkg/*
 
-RUN curl -sL -o /usr/local/bin/dumb-init https://github.com/Yelp/dumb-init/releases/download/v${DUMBINIT_VERSION}/dumb-init_${DUMBINIT_VERSION}_amd64 \
-	&& \
-	chmod 755 /usr/local/bin/dumb-init \
-	&& \
-	curl -sL -o /usr/local/bin/gosu https://github.com/tianon/gosu/releases/download/${GOSU_VERSION}/gosu-amd64 \
+RUN curl -sL -o /usr/local/bin/gosu https://github.com/tianon/gosu/releases/download/${GOSU_VERSION}/gosu-amd64 \
 	&& \
 	chmod 755 /usr/local/bin/gosu
+RUN curl -sL -o /usr/local/bin/tini https://github.com/krallin/tini/releases/download/v${TINI_VERSION}/tini-static \
+	&& \
+	chmod 755 /usr/local/bin/tini
+RUN curl -sL -o /usr/local/bin/tini-static.asc https://github.com/krallin/tini/releases/download/v${TINI_VERSION}/tini-static.asc \
+	&& \
+	gpg --keyserver ha.pool.sks-keyservers.net --recv-keys 0527A9B7 \
+	&& \
+	gpg --verify /usr/local/bin/tini-static.asc /usr/local/bin/tini
 
 # Have to do this _after_ installing yaourt
 COPY yaourtrc /etc/
 
-CMD ["/usr/local/bin/dumb-init", "/usr/bin/zsh"]
+ENTRYPOINT ["/usr/local/bin/tini", "-g", "--"]
+CMD ["/usr/bin/zsh"]
 
 
