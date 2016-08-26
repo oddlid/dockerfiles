@@ -1,6 +1,6 @@
 # Another step towards running my regular server apps in Docker
 
-FROM debian:jessie
+FROM oddlid/debian-base
 MAINTAINER Odd E. Ebbesen <oddebb@gmail.com>
 
 
@@ -25,4 +25,4 @@ VOLUME /var/lib/quassel
 VOLUME /var/run
 EXPOSE 4242
 
-ENTRYPOINT ["/run.sh"]
+ENTRYPOINT ["/usr/local/bin/tini", "-g", "--", "/run.sh"]
