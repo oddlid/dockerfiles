@@ -1,0 +1,12 @@
+[
+	{
+		"nickname": "tulletiss",
+		"server": "irc.oftc.net",
+		"port": 6697,
+		"secure": true,
+		"token": "xoxb-6195201622-iVvK9e9hY6GI6MtIOaLT1oIH",
+		"channelMapping": {
+			"#dvdg": "#dvdg"
+		}
+	}
+]
