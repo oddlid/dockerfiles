@@ -1,4 +1,4 @@
-# Standard nginx with dumb-init
+# Standard nginx with tini init
 
 FROM nginx:latest
 MAINTAINER Odd E. Ebbesen <oddebb@gmail.com>
