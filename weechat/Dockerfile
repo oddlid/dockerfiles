@@ -1,4 +1,4 @@
-FROM alpine:3.3
+FROM alpine:latest
 MAINTAINER Odd E. Ebbesen <oddebb@gmail.com>
 
 ENV LANG C.UTF-8
@@ -27,5 +27,4 @@ RUN curl -sL -o /usr/local/bin/gosu https://github.com/tianon/gosu/releases/down
 
 COPY weechat.sh /usr/local/bin/
 
-ENTRYPOINT ["/sbin/tini", "-g", "--", "/entrypoint.sh"]
-CMD ["/usr/local/bin/weechat.sh"]
+ENTRYPOINT ["/sbin/tini", "-g", "--", "/usr/local/bin/weechat.sh"]
