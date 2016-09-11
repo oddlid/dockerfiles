@@ -1,4 +1,4 @@
-FROM sameersbn/squid
+FROM sameersbn/squid:latest
 MAINTAINER Odd E. Ebbesen <oddebb@gmail.com>
 
 ENV TINI_VERSION 0.10.0
