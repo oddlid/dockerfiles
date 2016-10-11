@@ -56,7 +56,6 @@ RUN pacman -R --noconfirm --nodeps --nodeps vim \
 		ttf-inconsolata \
 		ttf-liberation \
 		ttf-linux-libertine \
-		ttf-oxygen \
 		ttf-ubuntu-font-family \
 		webkitgtk \
 		xarchiver \
