@@ -21,7 +21,7 @@ RUN echo "force-unsafe-io" > /etc/dpkg/dpkg.cfg.d/02apt-speedup \
 		&& \
 		rm -rf /var/lib/{apt,dpkg,cache,log}/
 
-ENV GOSU_VERSION 1.9
+ENV GOSU_VERSION 1.10
 ENV TINI_VERSION 0.10.0
 
 RUN curl -sL -o /usr/local/bin/gosu https://github.com/tianon/gosu/releases/download/${GOSU_VERSION}/gosu-amd64 \

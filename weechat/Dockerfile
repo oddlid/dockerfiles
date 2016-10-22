@@ -3,7 +3,7 @@ MAINTAINER Odd E. Ebbesen <oddebb@gmail.com>
 
 ENV LANG C.UTF-8
 ENV LC_ALL C
-ENV GOSU_VERSION 1.9
+ENV GOSU_VERSION 1.10
 
 RUN addgroup -g 1000 wc && adduser -u 1000 -G wc -D wc
 RUN apk add --update \

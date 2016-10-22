@@ -9,7 +9,7 @@ ENV VISUAL /usr/bin/vim
 ENV LANG sv_SE.UTF-8
 ENV REPORTTIME 5
 ENV TIMEFMT %U user, %S system, %P cpu, %*Es total
-ENV GOSU_VERSION 1.9
+ENV GOSU_VERSION 1.10
 ENV TINI_VERSION 0.10.0
 
 COPY mirrorlist /etc/pacman.d/mirrorlist
