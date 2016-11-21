@@ -14,7 +14,6 @@ RUN pacman -R --noconfirm --nodeps --nodeps vim \
 		awesome \
 		cantarell-fonts \
 		chromium \
-		clipit \
 		dina-font \
 		dmenu \
 		evince \
