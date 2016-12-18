@@ -1,7 +1,7 @@
 FROM oddlid/debian-base:latest
 MAINTAINER Odd E. Ebbesen <oddebb@gmail.com>
 
-ENV ZNC_VERSION 1.6.3
+ENV ZNC_VERSION 1.6.4
 
 RUN apt-get update -qq --fix-missing \
 	&& \
