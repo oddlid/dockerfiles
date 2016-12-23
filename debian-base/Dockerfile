@@ -4,6 +4,9 @@ MAINTAINER Odd E. Ebbesen <oddebb@gmail.com>
 ENV LANG C.UTF-8
 ENV LC_ALL C
 ENV DEBIAN_FRONTEND noninteractive
+ENV GOSU_VERSION 1.10
+ENV TINI_VERSION 0.13.2
+
 
 RUN echo "force-unsafe-io" > /etc/dpkg/dpkg.cfg.d/02apt-speedup \
 		&& \
@@ -20,9 +23,6 @@ RUN echo "force-unsafe-io" > /etc/dpkg/dpkg.cfg.d/02apt-speedup \
 		apt-get autoremove -y \
 		&& \
 		rm -rf /var/lib/{apt,dpkg,cache,log}/
-
-ENV GOSU_VERSION 1.10
-ENV TINI_VERSION 0.10.0
 
 RUN curl -sL -o /usr/local/bin/gosu https://github.com/tianon/gosu/releases/download/${GOSU_VERSION}/gosu-amd64 \
 	&& \

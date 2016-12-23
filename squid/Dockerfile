@@ -1,7 +1,7 @@
 FROM sameersbn/squid:latest
 MAINTAINER Odd E. Ebbesen <oddebb@gmail.com>
 
-ENV TINI_VERSION 0.10.0
+ENV TINI_VERSION 0.13.2
 
 ADD https://github.com/krallin/tini/releases/download/v${TINI_VERSION}/tini-static /sbin/tini
 ADD https://github.com/krallin/tini/releases/download/v${TINI_VERSION}/tini-static.asc /tmp/tini-static.asc

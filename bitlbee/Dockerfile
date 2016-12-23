@@ -2,7 +2,7 @@ FROM alpine:3.3
 MAINTAINER Odd Eivind Ebbesen <oddebb@gmail.com>
 
 #ENV GOSU_VERSION 1.10
-ENV TINI_VERSION 0.10.0
+ENV TINI_VERSION 0.13.2
 
 RUN apk add --update \
 	bash \
