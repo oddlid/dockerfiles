@@ -13,7 +13,7 @@ ENV OPENVPN_HOST localhost
 ENV OPENVPN_PORT 1194
 ENV HTTPS_HOST localhost
 ENV HTTPS_PORT 8443
-ENV TINI_VERSION 0.10.0
+ENV TINI_VERSION 0.13.2
 
 ADD https://github.com/krallin/tini/releases/download/v${TINI_VERSION}/tini-static /usr/local/bin/tini 
 ADD https://github.com/krallin/tini/releases/download/v${TINI_VERSION}/tini-static.asc /usr/local/bin/tini-static.asc 
