@@ -11,4 +11,4 @@ RUN gpg --verify /tmp/tini-static.asc /sbin/tini
 RUN chmod 755 /sbin/tini
 
 ENTRYPOINT ["tini", "-g", "--"]
-CMD ["/usr/local/bin/run.sh"]
+CMD ["run.sh"]

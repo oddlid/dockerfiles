@@ -9,5 +9,5 @@ RUN gpg --keyserver ha.pool.sks-keyservers.net --recv-keys 595E85A6B1B4779EA4DAA
 RUN gpg --verify /tmp/tini-static.asc /sbin/tini
 RUN chmod 755 /sbin/tini
 
-ENTRYPOINT ["/sbin/tini", "-g", "--", "/sbin/entrypoint.sh"]
+ENTRYPOINT ["tini", "-g", "--", "entrypoint.sh"]
 
