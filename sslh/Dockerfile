@@ -23,5 +23,5 @@ RUN chmod 755 /sbin/tini
 
 EXPOSE 443
 
-ENTRYPOINT ["/sbin/tini", "-g", "--"]
-CMD /usr/bin/sslh -f -u root -p ${LISTEN_IP}:${LISTEN_PORT} --ssh ${SSH_HOST}:${SSH_PORT} --ssl ${HTTPS_HOST}:${HTTPS_PORT} --openvpn ${OPENVPN_HOST}:${OPENVPN_PORT}
+ENTRYPOINT ["tini", "-g", "--"]
+CMD sslh -f -u root -p ${LISTEN_IP}:${LISTEN_PORT} --ssh ${SSH_HOST}:${SSH_PORT} --ssl ${HTTPS_HOST}:${HTTPS_PORT} --openvpn ${OPENVPN_HOST}:${OPENVPN_PORT}
