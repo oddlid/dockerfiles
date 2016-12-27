@@ -65,7 +65,7 @@ RUN chmod 755 /sbin/tini
 # Have to do this _after_ installing yaourt
 COPY yaourtrc /etc/
 
-ENTRYPOINT ["/sbin/tini", "-g", "--"]
-CMD ["/usr/bin/zsh"]
+ENTRYPOINT ["tini", "-g", "--"]
+CMD ["zsh"]
 
 

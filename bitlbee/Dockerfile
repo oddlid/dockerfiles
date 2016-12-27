@@ -21,6 +21,6 @@ COPY entrypoint.sh /
 VOLUME ["/var/lib/bitlbee"]
 EXPOSE 6667
 
-ENTRYPOINT ["/sbin/tini", "-g", "--", "/entrypoint.sh"]
-CMD ["/usr/sbin/bitlbee", "-n"]
+ENTRYPOINT ["tini", "-g", "--", "/entrypoint.sh"]
+CMD ["bitlbee", "-n"]
 

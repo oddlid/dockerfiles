@@ -26,6 +26,6 @@ RUN useradd -m -u 1000 -U gmvault
 
 VOLUME ["/home/gmvault/.gmvault", "/home/gmvault/gmvault-db"]
 
-ENTRYPOINT ["/sbin/tini", "-g", "--", "/usr/local/bin/gmvault.sh"]
+ENTRYPOINT ["tini", "-g", "--", "gmvault.sh"]
 CMD ["bash"]
 

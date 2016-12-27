@@ -44,5 +44,5 @@ COPY znc.conf.default /src/
 
 EXPOSE 6664 6665 6666 6667
 VOLUME ["/znc-data"]
-CMD ["/usr/local/bin/start-znc"]
+CMD ["start-znc"]
 

@@ -8,5 +8,5 @@ RUN apt-get -y --no-install-recommends install kpcli \
 COPY entrypoint.sh /
 RUN chmod 755 /entrypoint.sh
 
-ENTRYPOINT ["/sbin/tini", "-g", "--", "/entrypoint.sh"]
+ENTRYPOINT ["tini", "-g", "--", "/entrypoint.sh"]
 
