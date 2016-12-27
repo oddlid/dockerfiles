@@ -10,5 +10,5 @@ RUN npm install -g slack-irc
 ENV NODE_ENV development
 ENV SLACK_LOG_LEVEL debug
 
-ENTRYPOINT ["/sbin/tini", "-g", "--"]
+ENTRYPOINT ["tini", "-g", "--"]
 CMD ["slack-irc"]
