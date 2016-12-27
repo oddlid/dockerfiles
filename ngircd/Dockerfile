@@ -16,4 +16,4 @@ COPY ngircd.conf /etc/ngircd/ngircd.conf
 
 #VOLUME ["/etc/ngircd"]
 EXPOSE 6668
-CMD ["/usr/sbin/ngircd", "-n"]
+CMD ["ngircd", "-n"]
