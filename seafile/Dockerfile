@@ -1,6 +1,6 @@
 # See jenserat/seafile for more details
 
-FROM oddlid/debian-base:latest
+FROM oddlid/debian-base:jessie
 MAINTAINER Odd E. Ebbesen <oddebb@gmail.com>
 
 RUN apt-get update -qq \

@@ -1,6 +1,6 @@
 # Another step towards running my regular server apps in Docker
 
-FROM oddlid/debian-base
+FROM oddlid/debian-base:jessie
 MAINTAINER Odd E. Ebbesen <oddebb@gmail.com>
 
 

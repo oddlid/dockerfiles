@@ -1,4 +1,4 @@
-FROM oddlid/debian-base:latest
+FROM oddlid/debian-base:jessie
 MAINTAINER Odd E. Ebbesen <oddebb@gmail.com>
 
 ENV ZNC_VERSION 1.6.4
