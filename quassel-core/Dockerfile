@@ -25,4 +25,4 @@ VOLUME /var/lib/quassel
 VOLUME /var/run
 EXPOSE 4242
 
-ENTRYPOINT ["/usr/local/bin/tini", "-g", "--", "/run.sh"]
+ENTRYPOINT ["/sbin/tini", "-g", "--", "/run.sh"]

@@ -27,14 +27,11 @@ RUN echo "force-unsafe-io" > /etc/dpkg/dpkg.cfg.d/02apt-speedup \
 RUN curl -sL -o /usr/local/bin/gosu https://github.com/tianon/gosu/releases/download/${GOSU_VERSION}/gosu-amd64 \
 	&& \
 	chmod 755 /usr/local/bin/gosu 
-RUN curl -sL -o /usr/local/bin/tini https://github.com/krallin/tini/releases/download/v${TINI_VERSION}/tini-static \
-	&& \
-	chmod 755 /usr/local/bin/tini
-RUN curl -sL -o /usr/local/bin/tini-static.asc https://github.com/krallin/tini/releases/download/v${TINI_VERSION}/tini-static.asc \
-	&& \
-	gpg --keyserver ha.pool.sks-keyservers.net --recv-keys 0527A9B7 \
-	&& \
-	gpg --verify /usr/local/bin/tini-static.asc /usr/local/bin/tini
+ADD https://github.com/krallin/tini/releases/download/v${TINI_VERSION}/tini-static /sbin/tini
+ADD https://github.com/krallin/tini/releases/download/v${TINI_VERSION}/tini-static.asc /tmp/tini-static.asc
+RUN gpg --keyserver ha.pool.sks-keyservers.net --recv-keys 595E85A6B1B4779EA4DAAEC70B588DFF0527A9B7
+RUN gpg --verify /tmp/tini-static.asc /sbin/tini
+RUN chmod 755 /sbin/tini
 
-ENTRYPOINT ["/usr/local/bin/tini", "-g", "--"]
+ENTRYPOINT ["/sbin/tini", "-g", "--"]
 CMD ["/bin/bash"]

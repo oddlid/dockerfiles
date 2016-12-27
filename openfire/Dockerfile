@@ -1,4 +1,4 @@
-FROM oddlid/debian-base:latest
+FROM oddlid/debian-base:jessie
 MAINTAINER Odd E. Ebbesen <oddebb@gmail.com>
 
 ENV OPENFIRE_VERSION 3.9.3
@@ -26,4 +26,4 @@ EXPOSE 3478 3479 5222 5223 5229 7070 7443 7777 9090 9091
 
 COPY entrypoint.sh /usr/local/bin/
 
-ENTRYPOINT ["/usr/local/bin/tini", "-g", "--", "/usr/local/bin/entrypoint.sh"]
+ENTRYPOINT ["/sbin/tini", "-g", "--", "/usr/local/bin/entrypoint.sh"]

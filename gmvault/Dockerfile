@@ -1,4 +1,4 @@
-FROM oddlid/debian-base:latest
+FROM oddlid/debian-base:jessie
 MAINTAINER Odd Eivind Ebbesen <oddebb@gmail.com>
 
 # Change this to your preference
@@ -26,6 +26,6 @@ RUN useradd -m -u 1000 -U gmvault
 
 VOLUME ["/home/gmvault/.gmvault", "/home/gmvault/gmvault-db"]
 
-ENTRYPOINT ["/usr/local/bin/tini", "-g", "--", "/usr/local/bin/gmvault.sh"]
+ENTRYPOINT ["/sbin/tini", "-g", "--", "/usr/local/bin/gmvault.sh"]
 CMD ["bash"]
 

@@ -18,5 +18,5 @@ COPY entrypoint.sh /usr/local/bin/entrypoint.sh
 
 VOLUME ["/var/cache/ddclient", "/var/run"]
 
-ENTRYPOINT ["/usr/local/bin/tini", "-g", "--""/usr/local/bin/entrypoint.sh"]
+ENTRYPOINT ["/sbin/tini", "-g", "--""/usr/local/bin/entrypoint.sh"]
 CMD ["ddclient"]

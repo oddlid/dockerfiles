@@ -1,4 +1,4 @@
-FROM oddlid/debian-base
+FROM oddlid/debian-base:jessie
 MAINTAINER Odd E. Ebbesen <oddebb@gmail.com>
 
 RUN apt-get -y --no-install-recommends install kpcli \
@@ -8,5 +8,5 @@ RUN apt-get -y --no-install-recommends install kpcli \
 COPY entrypoint.sh /
 RUN chmod 755 /entrypoint.sh
 
-ENTRYPOINT ["/usr/local/bin/tini", "-g", "--", "/entrypoint.sh"]
+ENTRYPOINT ["/sbin/tini", "-g", "--", "/entrypoint.sh"]
 
