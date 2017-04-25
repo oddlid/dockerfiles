@@ -5,7 +5,7 @@ ENV LANG C.UTF-8
 ENV LC_ALL C
 ENV DEBIAN_FRONTEND noninteractive
 ENV GOSU_VERSION 1.10
-ENV TINI_VERSION 0.13.2
+ENV TINI_VERSION 0.14.0
 
 
 RUN echo "force-unsafe-io" > /etc/dpkg/dpkg.cfg.d/02apt-speedup \

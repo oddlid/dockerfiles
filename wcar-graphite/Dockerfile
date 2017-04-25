@@ -6,7 +6,7 @@ ENV GR_G graphite-web
 ENV GR_TAG tags/0.9.13-pre1
 ENV GR_BASEURL https://github.com/graphite-project
 ENV GOSU_VERSION 1.10
-ENV TINI_VERSION 0.13.2
+ENV TINI_VERSION 0.14.0
 
 WORKDIR /tmp/
 
