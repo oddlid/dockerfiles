@@ -1,6 +1,6 @@
 # Standard nginx with tini init
 
-FROM nginx:latest
+FROM nginx:alpine
 MAINTAINER Odd E. Ebbesen <oddebb@gmail.com>
 
 ENV TINI_VERSION 0.14.0
