@@ -7,6 +7,7 @@ RUN apt-get update -qq \
 		gnutls-bin \
 		openssl \
 		python2.7 \
+		python-matplotlib \
 		&& \
 		ln -sT /etc/ssl /usr/ssl \
 		&& \
