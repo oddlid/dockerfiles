@@ -11,8 +11,6 @@ RUN apt-get update -qq \
 		&& \
 		ln -sT /etc/ssl /usr/ssl \
 		&& \
-		ln -s /usr/bin/python2.7 /usr/bin/python \
-		&& \
 		useradd -m -u 1000 dropbox \
 		&& \
 		wget -nv -O /tmp/dropbox.tgz https://www.dropbox.com/download?plat=lnx.x86_64 \
