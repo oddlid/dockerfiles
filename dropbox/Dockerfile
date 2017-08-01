@@ -7,10 +7,9 @@ RUN apt-get update -qq \
 		gnutls-bin \
 		openssl \
 		python2.7 \
+		python-matplotlib \
 		&& \
 		ln -sT /etc/ssl /usr/ssl \
-		&& \
-		ln -s /usr/bin/python2.7 /usr/bin/python \
 		&& \
 		useradd -m -u 1000 dropbox \
 		&& \

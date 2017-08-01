@@ -56,7 +56,7 @@ RUN pacman -R --noconfirm --nodeps --nodeps vim \
 		ttf-liberation \
 		ttf-linux-libertine \
 		ttf-ubuntu-font-family \
-		webkitgtk \
+		webkit2gtk \
 		xarchiver \
 		xfce4-terminal \
 		xorg-fonts-100dpi \
