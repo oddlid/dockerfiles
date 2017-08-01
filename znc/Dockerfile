@@ -22,7 +22,7 @@ RUN apt-get update -qq --fix-missing \
 
 RUN cd /src \
 	&& \
-	curl -O http://znc.in/releases/archive/znc-${ZNC_VERSION}.tar.gz \
+	curl -O http://znc.in/releases/znc-${ZNC_VERSION}.tar.gz \
 	&& \
 	tar -zxf znc-${ZNC_VERSION}.tar.gz \
 	&& \
