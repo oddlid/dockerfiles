@@ -3,7 +3,7 @@
 FROM nginx:alpine
 MAINTAINER Odd E. Ebbesen <oddebb@gmail.com>
 
-ENV TINI_VERSION 0.14.0
+ENV TINI_VERSION 0.15.0
 
 RUN apk add --no-cache gnupg
 ADD https://github.com/krallin/tini/releases/download/v${TINI_VERSION}/tini-static /sbin/tini

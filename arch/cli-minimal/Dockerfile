@@ -10,7 +10,7 @@ ENV LANG sv_SE.UTF-8
 ENV REPORTTIME 5
 ENV TIMEFMT %U user, %S system, %P cpu, %*Es total
 ENV GOSU_VERSION 1.10
-ENV TINI_VERSION 0.14.0
+ENV TINI_VERSION 0.15.0
 
 COPY mirrorlist /etc/pacman.d/mirrorlist
 COPY locale.conf locale.gen vconsole.conf /etc/ 
