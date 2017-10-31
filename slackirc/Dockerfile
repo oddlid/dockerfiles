@@ -2,7 +2,7 @@
 FROM alpine:latest
 MAINTAINER Odd E. Ebbesen <oddebb@gmail.com>
 
-RUN apk add --update nodejs tini \
+RUN apk add --update nodejs-current-npm tini \
 	&& \
 	rm -rf /var/cache/apk/*
 RUN npm install -g slack-irc
