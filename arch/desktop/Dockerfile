@@ -4,7 +4,7 @@ FROM oddlid/arch-cli
 MAINTAINER Odd E. Ebbesen <oddebb@gmail.com>
 
 RUN pacman -Syy
-RUN pacman -R --noconfirm --nodeps --nodeps vim \
+RUN pacman -R --noconfirm --nodeps vim \
 		&& \
 		pacman -S --noconfirm --needed \
 		adobe-source-code-pro-fonts \
