@@ -1,4 +1,4 @@
-FROM alpine:3.3
+FROM alpine:latest
 MAINTAINER Odd Eivind Ebbesen <oddebb@gmail.com>
 
 RUN apk add --update \
