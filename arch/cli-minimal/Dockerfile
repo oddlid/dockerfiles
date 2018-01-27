@@ -10,7 +10,7 @@ ENV LANG sv_SE.UTF-8
 ENV REPORTTIME 5
 ENV TIMEFMT %U user, %S system, %P cpu, %*Es total
 ENV GOSU_VERSION 1.10
-#ENV TINI_VERSION 0.16.1
+ENV TINI_VERSION 0.16.1
 
 COPY mirrorlist /etc/pacman.d/mirrorlist
 COPY locale.conf locale.gen vconsole.conf /etc/ 
@@ -56,18 +56,18 @@ RUN pacman -S --noconfirm --needed \
 RUN curl -sL -o /usr/local/bin/gosu https://github.com/tianon/gosu/releases/download/${GOSU_VERSION}/gosu-amd64 \
 	&& \
 	chmod 755 /usr/local/bin/gosu
-#ADD https://github.com/krallin/tini/releases/download/v${TINI_VERSION}/tini-static /sbin/tini
-#ADD https://github.com/krallin/tini/releases/download/v${TINI_VERSION}/tini-static.asc /tmp/tini-static.asc
+ADD https://github.com/krallin/tini/releases/download/v${TINI_VERSION}/tini-static /sbin/tini
+ADD https://github.com/krallin/tini/releases/download/v${TINI_VERSION}/tini-static.asc /tmp/tini-static.asc
 # Bugfix, see: https://dev.gnupg.org/T2889
 #RUN echo standard-resolver >>/root/.gnupg/dirmngr.conf
-#RUN gpg --keyserver ha.pool.sks-keyservers.net --recv-keys 595E85A6B1B4779EA4DAAEC70B588DFF0527A9B7
-#RUN gpg --verify /tmp/tini-static.asc /sbin/tini
-#RUN chmod 755 /sbin/tini
+RUN gpg --keyserver hkp://p80.pool.sks-keyservers.net:80 --recv-keys 595E85A6B1B4779EA4DAAEC70B588DFF0527A9B7
+RUN gpg --verify /tmp/tini-static.asc /sbin/tini
+RUN chmod 755 /sbin/tini
 
 # Have to do this _after_ installing yaourt
 COPY yaourtrc /etc/
 
-ENTRYPOINT ["/dev/init", "-g", "--"]
+ENTRYPOINT ["/sbin/tini", "-g", "--"]
 CMD ["zsh"]
 
 
