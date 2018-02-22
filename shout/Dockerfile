@@ -1,6 +1,6 @@
 # For original, see: arbourd/docker-shout
 
-FROM node:9.5.0
+FROM node:9.6.0
 MAINTAINER Odd E. Ebbesen <oddebb@gmail.com>
 
 ENV PORT="9000"
