@@ -7,6 +7,7 @@ RUN apt-get update -qq --fix-missing \
 	&& \
 	apt-get install -y --no-install-recommends \
 	libcurl4-openssl-dev \
+	libicu-dev \
 	libperl-dev \
 	libsasl2-dev \
 	libssl-dev \
