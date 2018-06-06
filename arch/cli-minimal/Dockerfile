@@ -15,7 +15,7 @@ ENV TINI_VERSION 0.16.1
 COPY mirrorlist /etc/pacman.d/mirrorlist
 COPY locale.conf locale.gen vconsole.conf /etc/ 
 
-RUN echo -e "[archlinuxfr]\nSigLevel = Optional\nServer = http://repo.archlinux.fr/\$arch" >>/etc/pacman.conf
+#RUN echo -e "[archlinuxfr]\nSigLevel = Optional\nServer = http://repo.archlinux.fr/\$arch" >>/etc/pacman.conf
 RUN groupadd -g 1666 sudo
 RUN useradd -G sudo oddee
 RUN locale-gen
@@ -46,7 +46,6 @@ RUN pacman -S --noconfirm --needed \
 		whois \
 		vim \
 		vim-plugins \
-		yaourt \
 		zip \
 		zsh \
 		zsh-completions \
@@ -65,7 +64,7 @@ RUN gpg --verify /tmp/tini-static.asc /sbin/tini
 RUN chmod 755 /sbin/tini
 
 # Have to do this _after_ installing yaourt
-COPY yaourtrc /etc/
+#COPY yaourtrc /etc/
 
 ENTRYPOINT ["/sbin/tini", "-g", "--"]
 CMD ["zsh"]
