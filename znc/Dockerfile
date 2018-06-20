@@ -1,7 +1,7 @@
 FROM oddlid/debian-base:jessie
 MAINTAINER Odd E. Ebbesen <oddebb@gmail.com>
 
-ENV ZNC_VERSION 1.6.6
+ENV ZNC_VERSION 1.7.0
 
 RUN apt-get update -qq --fix-missing \
 	&& \
