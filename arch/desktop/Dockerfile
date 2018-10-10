@@ -40,7 +40,6 @@ RUN pacman -R --noconfirm --nodeps --nodeps vim \
 		pidgin-libnotify \
 		pidgin-otr \
 		pidgin-sipe \
-		profont \
 		rlwrap \
 		tamsyn-font \
 		terminus-font \
