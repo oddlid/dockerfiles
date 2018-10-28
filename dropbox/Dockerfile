@@ -3,7 +3,7 @@ MAINTAINER Odd Eivind Ebbesen <odd@oddware.net>
 
 RUN apt-get update -qq \
 		&& \
-		apt-get install -y --no-install-recommends \
+		apt-get install -y --force-yes --no-install-recommends \
 		gnutls-bin \
 		openssl \
 		python2.7 \
