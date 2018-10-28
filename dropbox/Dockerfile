@@ -39,4 +39,7 @@ RUN apt-get update -qq \
 VOLUME ["/home/dropbox/Dropbox"]
 EXPOSE 17500
 USER dropbox
+# Try to prevent automatic updates that kills the container
+# See: https://wiki.archlinux.org/index.php/dropbox
+RUN install -dm0 ~/.dropbox-dist
 CMD ["dropboxd"]
