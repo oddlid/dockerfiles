@@ -1,4 +1,4 @@
-FROM debian:jessie
+FROM debian:stretch
 MAINTAINER Odd E. Ebbesen <oddebb@gmail.com>
 
 ENV LANG C.UTF-8
