@@ -17,6 +17,7 @@ RUN echo "force-unsafe-io" > /etc/dpkg/dpkg.cfg.d/02apt-speedup \
 		build-essential \
 		ca-certificates \
 		curl \
+		dirmngr \
 		gnupg \
 		wget \
 		&& \
