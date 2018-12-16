@@ -1,4 +1,4 @@
-FROM oddlid/debian-base:jessie
+FROM oddlid/debian-base:stretch
 MAINTAINER Odd Eivind Ebbesen <odd@oddware.net>
 
 RUN apt-get update -qq \
