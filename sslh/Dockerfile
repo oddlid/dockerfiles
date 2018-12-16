@@ -13,12 +13,13 @@ ENV OPENVPN_HOST localhost
 ENV OPENVPN_PORT 1194
 ENV HTTPS_HOST localhost
 ENV HTTPS_PORT 8443
-#ENV TINI_VERSION 0.16.1
+#ENV TINI_VERSION 0.18.0
+#ENV TINI_GPG_KEY 595E85A6B1B4779EA4DAAEC70B588DFF0527A9B7
 
 #ADD https://github.com/krallin/tini/releases/download/v${TINI_VERSION}/tini-static /sbin/tini
 #ADD https://github.com/krallin/tini/releases/download/v${TINI_VERSION}/tini-static.asc /tmp/tini-static.asc
-#RUN gpg --keyserver ha.pool.sks-keyservers.net --recv-keys 595E85A6B1B4779EA4DAAEC70B588DFF0527A9B7
-#RUN gpg --verify /tmp/tini-static.asc /sbin/tini
+#RUN gpg --batch --keyserver hkp://ipv4.pool.sks-keyservers.net:80 --recv-keys 595E85A6B1B4779EA4DAAEC70B588DFF0527A9B7
+#RUN gpg --batch --verify /tmp/tini-static.asc /sbin/tini
 #RUN chmod 755 /sbin/tini
 
 EXPOSE 443
