@@ -60,7 +60,11 @@ ADD https://github.com/krallin/tini/releases/download/v${TINI_VERSION}/tini-stat
 ADD https://github.com/krallin/tini/releases/download/v${TINI_VERSION}/tini-static.asc /tmp/tini-static.asc
 # Bugfix, see: https://dev.gnupg.org/T2889
 RUN echo standard-resolver >>/root/.gnupg/dirmngr.conf
-RUN gpg --batch --keyserver hkp://ipv4.pool.sks-keyservers.net:80 --recv-keys $TINI_GPG_KEY
+RUN \
+		gpg --batch --keyserver hkp://pgp.mit.edu:80 --recv-keys "$TINI_GPG_KEY" || \
+		gpg --batch --keyserver hkp://keyserver.pgp.com:80 --recv-keys "$TINI_GPG_KEY" || \
+		gpg --batch --keyserver hkp://ipv4.pool.sks-keyservers.net:80 --recv-keys "$TINI_GPG_KEY" || \
+		gpg --batch --keyserver hkp://p80.pool.sks-keyservers.net:80 --recv-keys "$TINI_GPG_KEY"
 RUN gpg --batch --verify /tmp/tini-static.asc /sbin/tini
 RUN chmod 755 /sbin/tini
 
