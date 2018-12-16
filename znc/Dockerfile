@@ -1,4 +1,4 @@
-FROM oddlid/debian-base:jessie
+FROM oddlid/debian-base:stretch
 MAINTAINER Odd E. Ebbesen <oddebb@gmail.com>
 
 ENV ZNC_VERSION 1.7.1
