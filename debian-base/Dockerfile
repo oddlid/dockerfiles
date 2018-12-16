@@ -4,7 +4,6 @@ MAINTAINER Odd E. Ebbesen <oddebb@gmail.com>
 ENV LANG C.UTF-8
 ENV LC_ALL C
 ENV DEBIAN_FRONTEND noninteractive
-ENV GOSU_VERSION 1.10
 ENV TINI_VERSION 0.18.0
 ENV TINI_SUBREAPER 1
 ENV TINI_GPG_KEY 595E85A6B1B4779EA4DAAEC70B588DFF0527A9B7
@@ -20,6 +19,7 @@ RUN echo "force-unsafe-io" > /etc/dpkg/dpkg.cfg.d/02apt-speedup \
 		curl \
 		dirmngr \
 		gnupg \
+		gosu \
 		wget \
 		&& \
 		apt-get clean autoclean \
@@ -28,9 +28,6 @@ RUN echo "force-unsafe-io" > /etc/dpkg/dpkg.cfg.d/02apt-speedup \
 		&& \
 		rm -rf /var/lib/{apt,dpkg,cache,log}/
 
-RUN curl -sL -o /usr/local/bin/gosu https://github.com/tianon/gosu/releases/download/${GOSU_VERSION}/gosu-amd64 \
-	&& \
-	chmod 755 /usr/local/bin/gosu 
 ADD https://github.com/krallin/tini/releases/download/v${TINI_VERSION}/tini-static /sbin/tini
 ADD https://github.com/krallin/tini/releases/download/v${TINI_VERSION}/tini-static.asc /tmp/tini-static.asc
 
