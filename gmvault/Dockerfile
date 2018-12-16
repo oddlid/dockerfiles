@@ -1,4 +1,4 @@
-FROM oddlid/debian-base:jessie
+FROM oddlid/debian-base:stretch
 MAINTAINER Odd Eivind Ebbesen <oddebb@gmail.com>
 
 # Change this to your preference
