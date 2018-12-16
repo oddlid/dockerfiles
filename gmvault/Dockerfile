@@ -10,9 +10,10 @@ RUN apt-get update -qq --fix-missing \
 		python2.7 \
 		python2.7-dev \
 		python-pip \
+		python-setuptools \
 		python-virtualenv \
 		&& \
-		pip install --allow-all-external -I gmvault==1.9.1 \
+		pip install -I gmvault==1.9.1 \
 		&& \
 		apt-get clean autoclean \
 		&& \
