@@ -1,6 +1,12 @@
 FROM sameersbn/squid:latest
 MAINTAINER Odd E. Ebbesen <oddebb@gmail.com>
 
+RUN apt-get update && \
+		DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
+		dirmngr \
+		gnupg && \
+		rm -rf /var/lib/apt/lists/*
+
 ENV TINI_VERSION 0.18.0
 ENV TINI_GPG_KEY 595E85A6B1B4779EA4DAAEC70B588DFF0527A9B7
 
