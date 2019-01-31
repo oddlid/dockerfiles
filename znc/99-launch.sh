@@ -2,4 +2,4 @@
 # started via *shell module is not guaranteed to reap their children.
 # That's why using tini.
 
-exec /sbin/tini -g -- su-exec znc:znc /opt/znc/bin/znc --foreground --datadir "$DATADIR" "$@"
+exec su-exec znc:znc /opt/znc/bin/znc --foreground --datadir "$DATADIR" "$@"
