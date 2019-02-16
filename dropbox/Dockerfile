@@ -4,7 +4,7 @@ MAINTAINER Odd Eivind Ebbesen <odd@oddware.net>
 RUN apk add --update --no-cache \
 		ca-certificates \
 		openssl \
-		python \
+		python3 \
 		tini \
 		wget \
 		&& \
