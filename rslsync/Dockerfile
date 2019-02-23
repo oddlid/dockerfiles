@@ -4,6 +4,19 @@ LABEL maintainer="Odd E. Ebbesen <oddebb@gmail.com>"
 ENV TINI_VERSION 0.18.0
 ENV TINI_GPG_KEY 595E85A6B1B4779EA4DAAEC70B588DFF0527A9B7
 
+RUN apt-get -qq update \
+		&& \
+		apt-get -y --no-install-recommends install \
+		ca-certificates \
+		dirmngr \
+		gnupg \
+		&& \
+		apt-get clean autoclean \
+		&& \
+		apt-get autoremove -y \
+		&& \
+		rm -rf /var/lib/{apt,dpkg,cache,log}/
+
 ADD https://github.com/krallin/tini/releases/download/v${TINI_VERSION}/tini-static /sbin/tini
 ADD https://github.com/krallin/tini/releases/download/v${TINI_VERSION}/tini-static.asc /tmp/tini-static.asc
 
