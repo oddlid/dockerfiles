@@ -46,7 +46,6 @@ RUN pacman -S --noconfirm --needed \
 		unzip \
 		whois \
 		vim \
-		vim-plugins \
 		zip \
 		zsh \
 		zsh-completions \
