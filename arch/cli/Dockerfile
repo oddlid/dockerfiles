@@ -17,7 +17,6 @@ RUN pacman -S --noconfirm --needed \
 		cvs \
 		ddclient \
 		dnsmasq \
-		dtach \
 		ed \
 		elinks \
 		fakeroot \
