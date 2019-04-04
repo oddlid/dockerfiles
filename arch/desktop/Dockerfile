@@ -10,7 +10,6 @@ RUN pacman -R --noconfirm --nodeps --nodeps vim \
 		adobe-source-code-pro-fonts \
 		adobe-source-sans-pro-fonts \
 		adobe-source-serif-pro-fonts \
-		artwiz-fonts \
 		awesome \
 		cantarell-fonts \
 		chromium \
