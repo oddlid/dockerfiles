@@ -44,7 +44,6 @@ RUN pacman -R --noconfirm --nodeps --nodeps vim \
 		texlive-bin \
 		ttf-anonymous-pro \
 		ttf-bitstream-vera \
-		ttf-cheapskate \
 		ttf-dejavu \
 		ttf-droid \
 		ttf-freefont \
