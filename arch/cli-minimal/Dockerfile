@@ -1,6 +1,7 @@
 # Dockerfile for an Arch instance with stuff I need without X
 
-FROM dock0/service
+FROM archlinux/base
+#FROM dock0/service
 MAINTAINER Odd E. Ebbesen <oddebb@gmail.com>
 
 ENV PAGER /usr/bin/less
@@ -14,7 +15,7 @@ ENV TINI_VERSION 0.18.0
 ENV TINI_GPG_KEY 595E85A6B1B4779EA4DAAEC70B588DFF0527A9B7
 
 COPY mirrorlist /etc/pacman.d/mirrorlist
-COPY locale.conf locale.gen vconsole.conf /etc/ 
+COPY locale.conf locale.gen vconsole.conf /etc/
 
 #RUN echo -e "[archlinuxfr]\nSigLevel = Optional\nServer = http://repo.archlinux.fr/\$arch" >>/etc/pacman.conf
 RUN groupadd -g 1666 sudo
