@@ -1,4 +1,4 @@
-FROM thelounge/thelounge:3.0.1-alpine
+FROM thelounge/thelounge:3.2.0-alpine
 LABEL maintainer="Odd E. Ebbesen <oddebb@gmail.com>"
 
 RUN apk add --no-cache --update tini \
