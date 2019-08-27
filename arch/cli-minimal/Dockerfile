@@ -59,7 +59,7 @@ RUN curl -sL -o /usr/local/bin/gosu https://github.com/tianon/gosu/releases/down
 ADD https://github.com/krallin/tini/releases/download/v${TINI_VERSION}/tini-static /sbin/tini
 ADD https://github.com/krallin/tini/releases/download/v${TINI_VERSION}/tini-static.asc /tmp/tini-static.asc
 # Bugfix, see: https://dev.gnupg.org/T2889
-RUN echo standard-resolver >>/root/.gnupg/dirmngr.conf
+RUN mkdir -p /root/.gnupg && echo standard-resolver >>/root/.gnupg/dirmngr.conf
 RUN \
 		gpg --batch --keyserver hkp://pgp.mit.edu:80 --recv-keys "$TINI_GPG_KEY" || \
 		gpg --batch --keyserver hkp://keyserver.pgp.com:80 --recv-keys "$TINI_GPG_KEY" || \
