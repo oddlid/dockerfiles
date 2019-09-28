@@ -1,16 +1,21 @@
 FROM frolvlad/alpine-glibc:latest
 MAINTAINER Odd Eivind Ebbesen <odd@oddware.net>
 
+ARG UID=1000
+ARG GID=1000
+
 RUN apk add --update --no-cache \
 		ca-certificates \
 		openssl \
 		python3 \
+		shadow \
+		su-exec \
 		tini \
 		wget \
 		&& \
-		addgroup -g 1000 dropbox \
+		addgroup -g ${GID} dropbox \
 		&& \
-		adduser -u 1000 -G dropbox -D dropbox \
+		adduser -u ${UID} -G dropbox -D dropbox \
 		&& \
 		wget -nv -O /tmp/dropbox.tgz https://www.dropbox.com/download?plat=lnx.x86_64 \
 		&& \
@@ -32,9 +37,10 @@ RUN apk add --update --no-cache \
 
 VOLUME ["/home/dropbox/Dropbox"]
 EXPOSE 17500
-USER dropbox
+#USER dropbox
 # Try to prevent automatic updates that kills the container
 # See: https://wiki.archlinux.org/index.php/dropbox
-RUN install -dm0 ~/.dropbox-dist
-ENTRYPOINT ["tini", "-g", "--"]
+#RUN install -dm0 ~/.dropbox-dist
+COPY startuphelper.sh /usr/local/sbin/
+ENTRYPOINT ["tini", "-g", "--", "startuphelper.sh"]
 CMD ["dropboxd"]
