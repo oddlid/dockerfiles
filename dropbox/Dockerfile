@@ -6,6 +6,7 @@ ARG GID=1000
 
 RUN apk add --update --no-cache \
 		ca-certificates \
+		libstdc++ \
 		openssl \
 		python3 \
 		shadow \
@@ -37,10 +38,6 @@ RUN apk add --update --no-cache \
 
 VOLUME ["/home/dropbox/Dropbox"]
 EXPOSE 17500
-#USER dropbox
-# Try to prevent automatic updates that kills the container
-# See: https://wiki.archlinux.org/index.php/dropbox
-#RUN install -dm0 ~/.dropbox-dist
 COPY startuphelper.sh /usr/local/sbin/
 ENTRYPOINT ["tini", "-g", "--", "startuphelper.sh"]
 CMD ["dropboxd"]
