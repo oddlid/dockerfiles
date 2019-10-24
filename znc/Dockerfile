@@ -1,4 +1,4 @@
-FROM znc:1.7.4
+FROM znc:1.7.5
 MAINTAINER Odd E. Ebbesen <oddebb@gmail.com>
 
 # Fix uid/gid for user znc to match my old image
