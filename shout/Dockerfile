@@ -22,7 +22,11 @@ ADD https://github.com/krallin/tini/releases/download/v${TINI_VERSION}/tini-stat
 
 RUN apk add --no-cache --update gnupg
 
-RUN gpg --batch --keyserver hkp://ipv4.pool.sks-keyservers.net:80 --recv-keys $TINI_GPG_KEY
+RUN \
+		gpg --batch --keyserver hkp://pgp.mit.edu:80 --recv-keys "$TINI_GPG_KEY" || \
+		gpg --batch --keyserver hkp://keyserver.pgp.com:80 --recv-keys "$TINI_GPG_KEY" || \
+		gpg --batch --keyserver hkp://ipv4.pool.sks-keyservers.net:80 --recv-keys "$TINI_GPG_KEY" || \
+		gpg --batch --keyserver hkp://p80.pool.sks-keyservers.net:80 --recv-keys "$TINI_GPG_KEY"
 RUN gpg --batch --verify /tmp/tini-static.asc /sbin/tini
 RUN chmod 755 /sbin/tini
 
