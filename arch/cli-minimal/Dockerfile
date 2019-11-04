@@ -1,7 +1,6 @@
 # Dockerfile for an Arch instance with stuff I need without X
 
-FROM archlinux/base
-#FROM dock0/service
+FROM archlinux
 MAINTAINER Odd E. Ebbesen <oddebb@gmail.com>
 
 ENV PAGER /usr/bin/less
@@ -14,7 +13,7 @@ ENV GOSU_VERSION 1.11
 ENV TINI_VERSION 0.18.0
 ENV TINI_GPG_KEY 595E85A6B1B4779EA4DAAEC70B588DFF0527A9B7
 
-COPY mirrorlist /etc/pacman.d/mirrorlist
+#COPY mirrorlist /etc/pacman.d/mirrorlist
 COPY locale.conf locale.gen vconsole.conf /etc/
 
 #RUN echo -e "[archlinuxfr]\nSigLevel = Optional\nServer = http://repo.archlinux.fr/\$arch" >>/etc/pacman.conf
@@ -30,6 +29,7 @@ RUN pacman -S --noconfirm --needed \
 		binutils \
 		file \
 		gcc \
+		grep \
 		inetutils \
 		lbzip2 \
 		lesspipe \
