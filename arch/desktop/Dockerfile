@@ -31,7 +31,7 @@ RUN pacman -R --noconfirm --nodeps --nodeps vim \
 		i3 \
 		icedtea-web \
 		jre8-openjdk \
-		keepassx \
+		keepass \
 		notification-daemon \
 		opera \
 		pcmanfm \
