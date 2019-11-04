@@ -1,6 +1,6 @@
 # For original, see: arbourd/docker-shout
 
-FROM node:9.6.0
+FROM node:lts-alpine
 MAINTAINER Odd E. Ebbesen <oddebb@gmail.com>
 
 ENV PORT="9000"
@@ -19,6 +19,9 @@ RUN chown node:node /home/node/shout.sh && chmod 755 /home/node/shout.sh
 
 ADD https://github.com/krallin/tini/releases/download/v${TINI_VERSION}/tini-static /sbin/tini
 ADD https://github.com/krallin/tini/releases/download/v${TINI_VERSION}/tini-static.asc /tmp/tini-static.asc
+
+RUN apk add --no-cache --update gnupg
+
 RUN gpg --batch --keyserver hkp://ipv4.pool.sks-keyservers.net:80 --recv-keys $TINI_GPG_KEY
 RUN gpg --batch --verify /tmp/tini-static.asc /sbin/tini
 RUN chmod 755 /sbin/tini
