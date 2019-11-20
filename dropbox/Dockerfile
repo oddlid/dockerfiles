@@ -6,6 +6,7 @@ ARG GID=1000
 
 RUN apk add --update --no-cache \
 		ca-certificates \
+		libatomic \
 		libstdc++ \
 		openssl \
 		python3 \
