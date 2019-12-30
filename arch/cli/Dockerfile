@@ -1,14 +1,18 @@
 # Dockerfile for an Arch instance with stuff I need without X
 
 FROM oddlid/arch-cli-minimal
-MAINTAINER Odd E. Ebbesen <oddebb@gmail.com>
+LABEL maintainer="Odd E. Ebbesen <oddebb@gmail.com>"
 
 RUN pacman -S --noconfirm --needed \
 		ansible \
 		antiword \
+		arch-install-scripts \
 		aspell \
+		autoconf \
+		automake \
 		bc \
 		bind-tools \
+		binutils \
 		bzr \
 		cabextract \
 		cdrkit \
@@ -21,11 +25,14 @@ RUN pacman -S --noconfirm --needed \
 		elinks \
 		fakeroot \
 		fastjar \
+		gcc \
 		go \
 		godep \
 		html2text \
 		htop \
 		ipcalc \
+		m4 \
+		make \
 		mc \
 		mercurial \
 		msmtp-mta \
@@ -35,8 +42,11 @@ RUN pacman -S --noconfirm --needed \
 		openbsd-netcat \
 		openssh \
 		p7zip \
+		patch \
+		pkg-config \
 		rpmextract \
 		sipcalc \
+		strace \
 		subversion \
 		unace \
 		unarj \
@@ -45,4 +55,3 @@ RUN pacman -S --noconfirm --needed \
 		weechat \
 		&& \
 		rm -rf /var/cache/pacman/pkg/*
-

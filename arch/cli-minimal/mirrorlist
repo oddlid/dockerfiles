@@ -3,14 +3,13 @@
 ################################################################################
 
 # With:       reflector --verbose --country Sweden -l 6 -p http --sort rate --save ./mirrorlist
-# When:       2015-10-20 08:24:08 UTC
+# When:       2019-12-30 09:00:58 UTC
 # From:       https://www.archlinux.org/mirrors/status/json/
-# Retrieved:  2015-10-20 08:24:08 UTC
-# Last Check: 2015-10-20 07:59:34 UTC
+# Retrieved:  2019-12-30 09:00:58 UTC
+# Last Check: 2019-12-30 07:56:19 UTC
 
+Server = http://ftpmirror.infania.net/mirror/archlinux/$repo/os/$arch
 Server = http://ftp.lysator.liu.se/pub/archlinux/$repo/os/$arch
-Server = http://ftp.myrveln.se/pub/linux/archlinux/$repo/os/$arch
-Server = http://ftp.acc.umu.se/mirror/archlinux/$repo/os/$arch
 Server = http://archlinux.dynamict.se/$repo/os/$arch
-Server = http://ftp.portlane.com/pub/os/linux/archlinux/$repo/os/$arch
-Server = http://ftp.df.lth.se/pub/archlinux/$repo/os/$arch
+Server = http://ftp.acc.umu.se/mirror/archlinux/$repo/os/$arch
+Server = http://ftp.myrveln.se/pub/linux/archlinux/$repo/os/$arch

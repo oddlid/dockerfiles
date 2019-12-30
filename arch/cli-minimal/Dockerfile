@@ -1,47 +1,40 @@
 # Dockerfile for an Arch instance with stuff I need without X
 
 FROM archlinux
-MAINTAINER Odd E. Ebbesen <oddebb@gmail.com>
+LABEL maintainer="Odd E. Ebbesen <oddebb@gmail.com>"
 
 ENV PAGER /usr/bin/less
 ENV EDITOR /usr/bin/vim
 ENV VISUAL /usr/bin/vim
-ENV LANG sv_SE.UTF-8
+ENV LANG en_US.UTF-8
 ENV REPORTTIME 5
 ENV TIMEFMT %U user, %S system, %P cpu, %*Es total
-ENV GOSU_VERSION 1.11
-ENV TINI_VERSION 0.18.0
-ENV TINI_GPG_KEY 595E85A6B1B4779EA4DAAEC70B588DFF0527A9B7
+
+ARG GOSU_VERSION=1.11
+ARG TINI_VERSION=0.18.0
+ARG TINI_GPG_KEY=595E85A6B1B4779EA4DAAEC70B588DFF0527A9B7
+ARG SUDO_GID=1666
+ARG SUDO_USER=oddee
 
 #COPY mirrorlist /etc/pacman.d/mirrorlist
-COPY locale.conf locale.gen vconsole.conf /etc/
+#COPY locale.conf locale.gen vconsole.conf /etc/
+COPY vconsole.conf /etc/
 
 #RUN echo -e "[archlinuxfr]\nSigLevel = Optional\nServer = http://repo.archlinux.fr/\$arch" >>/etc/pacman.conf
-RUN groupadd -g 1666 sudo
-RUN useradd -G sudo oddee
-RUN locale-gen
+RUN groupadd -g ${SUDO_GID} sudo
+RUN useradd -G sudo ${SUDO_USER}
+#RUN locale-gen
 RUN pacman -Syy
 RUN pacman -S --noconfirm --needed \
-		arch-install-scripts \
-		autoconf \
-		automake \
 		bash-completion \
-		binutils \
 		file \
-		gcc \
 		grep \
 		inetutils \
 		lbzip2 \
 		lesspipe \
 		lsof \
 		lzop \
-		m4 \
-		make \
-		patch \
-		pkg-config \
 		rsync \
-		screen \
-		strace \
 		sudo \
 		tmux \
 		unzip \
@@ -73,5 +66,3 @@ RUN chmod 755 /sbin/tini
 
 ENTRYPOINT ["/sbin/tini", "-g", "--"]
 CMD ["zsh"]
-
-
