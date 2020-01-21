@@ -1,4 +1,4 @@
-FROM resilio/sync:latest
+FROM resilio/sync:2.6.4
 LABEL maintainer="Odd E. Ebbesen <oddebb@gmail.com>"
 
 ENV TINI_VERSION 0.18.0
