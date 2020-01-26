@@ -34,6 +34,7 @@ RUN pacman -S --noconfirm --needed \
 		lesspipe \
 		lsof \
 		lzop \
+		openssh \
 		rsync \
 		sudo \
 		tmux \

@@ -40,7 +40,6 @@ RUN pacman -S --noconfirm --needed \
 		nodejs \
 		nss \
 		openbsd-netcat \
-		openssh \
 		p7zip \
 		patch \
 		pkg-config \
