@@ -27,7 +27,6 @@ RUN pacman -S --noconfirm --needed \
 		fastjar \
 		gcc \
 		go \
-		godep \
 		html2text \
 		htop \
 		ipcalc \
