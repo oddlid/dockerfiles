@@ -9,6 +9,7 @@ RUN apt-get update -qq \
 		apt-get install -y --force-yes --no-install-recommends \
 		gnutls-bin \
 		libglapi-mesa \
+		libxcb-dri2-0 \
 		libxcb-glx0 \
 		openssl \
 		python2.7 \
