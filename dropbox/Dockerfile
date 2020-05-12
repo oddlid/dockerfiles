@@ -12,6 +12,7 @@ RUN apt-get update -qq \
 		libxcb-dri2-0 \
 		libxcb-dri3-0 \
 		libxcb-glx0 \
+		libxcb-present0 \
 		openssl \
 		python2.7 \
 		python-matplotlib \
