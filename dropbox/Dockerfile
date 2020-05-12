@@ -10,6 +10,7 @@ RUN apt-get update -qq \
 		gnutls-bin \
 		libglapi-mesa \
 		libxcb-dri2-0 \
+		libxcb-dri3-0 \
 		libxcb-glx0 \
 		openssl \
 		python2.7 \
