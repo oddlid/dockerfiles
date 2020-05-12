@@ -9,7 +9,7 @@ RUN apt-get update -qq \
 		apt-get install -y --force-yes --no-install-recommends \
 		gnutls-bin \
 		libglapi-mesa \
-		libxcb \
+		libxcb-glx0 \
 		openssl \
 		python2.7 \
 		python-matplotlib \
