@@ -14,6 +14,7 @@ RUN apt-get update -qq \
 		libxcb-glx0 \
 		libxcb-present0 \
 		libxcb-sync1 \
+		libxshmfence1 \
 		openssl \
 		python2.7 \
 		python-matplotlib \
