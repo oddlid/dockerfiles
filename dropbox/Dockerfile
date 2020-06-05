@@ -1,4 +1,4 @@
-FROM oddlid/debian-base:stretch
+FROM oddlid/debian-base:buster
 LABEL maintainer="Odd Eivind Ebbesen <odd@oddware.net>"
 
 ARG UID=1000
@@ -9,11 +9,13 @@ RUN apt-get update -qq \
 		apt-get install -y --force-yes --no-install-recommends \
 		gnutls-bin \
 		libglapi-mesa \
+		libglib2.0-0 \
 		libxcb-dri2-0 \
 		libxcb-dri3-0 \
 		libxcb-glx0 \
 		libxcb-present0 \
 		libxcb-sync1 \
+		libxdamage1 \
 		libxshmfence1 \
 		libxxf86vm1 \
 		openssl \
