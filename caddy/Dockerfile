@@ -1,4 +1,4 @@
-FROM caddy:2.2.0
+FROM caddy:2.4.2
 LABEL maintainer="Odd E. Ebbesen <oddebb@gmail.com>"
 
 RUN addgroup -g 1000 caddy && adduser -u 1000 -G caddy -D caddy
