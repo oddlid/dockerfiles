@@ -1,4 +1,4 @@
-FROM oddlid/debian-base:buster
+FROM oddlid/debian-base:latest
 LABEL maintainer="Odd Eivind Ebbesen <odd@oddware.net>"
 
 ARG UID=1000
