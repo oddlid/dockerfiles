@@ -11,4 +11,4 @@ RUN apk add --no-cache shadow && \
 # Modified original script to not run tini, as I do it in entrypoint instead
 #COPY 99-launch.sh /startup-sequence/
 
-ENTRYPOINT ["tini", "-g", "--", "/entrypoint.sh"]
+ENTRYPOINT ["/entrypoint.sh"]

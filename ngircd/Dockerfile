@@ -1,4 +1,4 @@
-FROM oddlid/debian-base:buster
+FROM oddlid/debian-base:latest
 MAINTAINER Odd E. Ebbesen <oddebb@gmail.com>
 
 RUN apt-get -qq update \
