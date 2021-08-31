@@ -19,7 +19,7 @@ RUN apt-get update -qq \
 		libxshmfence1 \
 		libxxf86vm1 \
 		openssl \
-		python2.7 \
+		python3 \
 		python-matplotlib \
 		&& \
 		ln -sT /etc/ssl /usr/ssl \
