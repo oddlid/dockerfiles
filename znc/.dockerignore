@@ -1,3 +1,4 @@
 bootstrap.sh
 Makefile
 oddlid-docker-znc.sh
+znc.conf.default
