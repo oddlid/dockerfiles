@@ -26,7 +26,6 @@ call plug#begin()
   Plug 'tpope/vim-surround'
   Plug 'tpope/vim-tbone'
   Plug 'vim-utils/vim-husk'
-"  Plug 'lifepillar/vim-gruvbox8'
 call plug#end()
 " Plugins END
 "------------------------------------------------
@@ -105,12 +104,6 @@ set cmdheight=1
 set laststatus=2
 set noshowmode
 
-"let g:gruvbox_transp_bg = 1
-"let g:gruvbox_italicize_strings = 0
-
-"set list
-"set listchars=tab:»·,trail:·-
-" Trying Görans list options
 set nolist
 set listchars=tab:!-,trail:-,precedes:<,extends:>
 
@@ -128,47 +121,6 @@ let g:lightline.component_type = { 'buffers': 'tabsel' }
 let g:lightline.component_expand = { 'buffers': 'lightline#bufferline#buffers' }
 let g:lightline.tabline = { 'right': [ ['buffers'] ] }
 let g:lightline.tab = { 'active': [ 'bufnum', 'filename', 'modified' ], 'inactive': [ 'bufnum', 'filename', 'modified' ] }
-
-"let g:lightline = {
-"\  'colorscheme': 'solarized',
-"\  'active': {
-"\    'left': [ [ 'mode', 'paste' ], [ 'gitbranch' ], [ 'readonly', 'relativepath', 'modified' ] ],
-"\    'right': [ [ 'lineinfo' ], [ 'percent' ], [ 'fileformat', 'fileencoding', 'filetype' ] ]
-"\  },
-"\  'inactive': {
-"\    'left': [ [], [], [ 'relativepath' ] ],
-"\    'right': [ [], [], [ 'lineinfo', 'percent' ] ]
-"\  },
-"\  'subseparator': {
-"\    'left': '', 'right': ''
-"\  },
-"\  'tabline': {
-"\    'left': [ ['buffers'] ],
-"\    'right': [ [] ]
-"\  },
-"\  'tab': {
-"\    'active': [ 'bufnum', 'filename', 'modified' ],
-"\    'inactive': [ 'bufnum', 'filename', 'modified' ]
-"\  },
-"\  'tabline_separator': {
-"\    'left': "", 'right': ""
-"\  },
-"\  'tabline_subseparator': {
-"\    'left': "", 'right': ""
-"\  },
-"\  'component_expand': {
-"\    'buffers': 'lightline#bufferline#buffers'
-"\  },
-"\  'component_raw': {
-"\    'buffers': 1
-"\  },
-"\  'component_type': {
-"\    'buffers': 'tabsel'
-"\  },
-"\  'component_function': {
-"\    'gitbranch': 'FugitiveHead'
-"\  }
-"\}
 
 " Theme END
 "------------------------------------------------
