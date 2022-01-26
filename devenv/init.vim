@@ -1,3 +1,14 @@
+" let g:coc_global_extensions = [
+" \ 'coc-sh',
+" \ 'coc-css',
+" \ 'coc-go',
+" \ 'coc-html',
+" \ 'coc-tsserver',
+" \ 'coc-json',
+" \ 'coc-markdownlint',
+" \ 'coc-perl',
+" \ 'coc-pyright'
+" \ ]
 "-----------------------------------------------
 " Plugins START
 call plug#begin()
@@ -12,7 +23,17 @@ call plug#begin()
   Plug 'junegunn/vim-easy-align'
   Plug 'kevinoid/vim-jsonc'
   Plug 'mengelbrecht/lightline-bufferline'
-  Plug 'neoclide/coc.nvim', {'branch': 'release'}
+  Plug 'neoclide/coc.nvim', { 'branch': 'release' }
+  " Plug 'josa42/coc-sh', { 'do': 'yarn install --frozen-lockfile' }
+  " Plug 'clangd/coc-clangd', { 'do': 'yarn install --frozen-lockfile' }
+  " Plug 'neoclide/coc-css', { 'do': 'yarn install --frozen-lockfile' }
+  " Plug 'josa42/coc-go', { 'do': 'yarn install --frozen-lockfile' }
+  " Plug 'neoclide/coc-html', { 'do': 'yarn install --frozen-lockfile' }
+  " Plug 'neoclide/coc-tsserver', { 'do': 'yarn install --frozen-lockfile' }
+  " Plug 'neoclide/coc-json', { 'do': 'yarn install --frozen-lockfile' }
+  " Plug 'fannheyward/coc-markdownlint', { 'do': 'yarn install --frozen-lockfile' }
+  " Plug 'bmeneg/coc-perl', { 'do': 'yarn install --frozen-lockfile' }
+  " Plug 'fannheyward/coc-pyright', { 'do': 'yarn install --frozen-lockfile' }
   Plug 'ntpeters/vim-better-whitespace'
   Plug 'overcache/NeoSolarized'
   Plug 'preservim/nerdtree'
