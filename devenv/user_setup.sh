@@ -14,8 +14,8 @@ setup_go_tools() {
 
 setup_nvim_plugins() {
 	sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
-	nvim +'PlugInstall' +qa --headless
-	nvim +'PlugInstall' +qa --headless
+	# nvim +'PlugInstall' +qa --headless
+	# nvim +'PlugInstall' +qa --headless
 	# nvim +':CocInstall coc-sh' +qa --headless
 	# nvim +':CocInstall coc-css' +qa --headless
 	# nvim +':CocInstall coc-go' +qa --headless
@@ -29,7 +29,7 @@ setup_nvim_plugins() {
 
 setup_vim_plugins() {
 	curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-	vim +'PlugInstall' +qa --headless
+	#vim +'PlugInstall' +qa --headless
 }
 
 # setup_tmux_plugins() {
@@ -40,6 +40,6 @@ setup_vim_plugins() {
 # }
 
 setup_oh_my_zsh || (echo "Failed to setup Oh-My-ZSH" && exit 1)
-setup_go_tools || (echo "Failed to install go tools" && exit 1)
+# setup_go_tools || (echo "Failed to install go tools" && exit 1)
 setup_nvim_plugins || (echo "Failed to install NeoVim plugins" && exit 1)
-# setup_vim_plugins || (echo "Failed to install vim plugins" && exit 1)
+setup_vim_plugins || (echo "Failed to install vim plugins" && exit 1)
