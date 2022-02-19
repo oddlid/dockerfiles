@@ -2,20 +2,7 @@ FROM docker.io/golang:latest
 LABEL maintainer="Odd Eivind Ebbesen <oddebb@gmail.com>"
 
 ARG ARG_TZ="Europe/Stockholm"
-ARG DOCKER_USER="devenv"
-ARG BAT_VERSION="0.19.0"
-ARG GITDELTA_VERSION="0.11.3"
-ARG GITMUX_VERSION="0.7.6"
-ARG RIPGREP_VERSION="13.0.0"
-ARG K9S_VERSION="0.25.18"
-
 ENV TZ=${ARG_TZ}
-ENV DOCKER_USER=${DOCKER_USER}
-ENV BAT_VERSION=${BAT_VERSION}
-ENV GITDELTA_VERSION=${GITDELTA_VERSION}
-ENV GITMUX_VERSION=${GITMUX_VERSION}
-ENV RIPGREP_VERSION=${RIPGREP_VERSION}
-ENV K9S_VERSION=${K9S_VERSION}
 
 RUN set -eux; \
 	curl -fsSLo /usr/share/keyrings/kubernetes-archive-keyring.gpg \
@@ -44,6 +31,7 @@ RUN set -eux; \
 		npm \
 		openssh-client \
 		pkg-config \
+		ripgrep \
 		silversearcher-ag \
 		tmux \
 		tmux-plugin-manager \
@@ -64,15 +52,22 @@ RUN set -eux; \
 	&& cd - \
 	&& rm -rf neovim
 
+ARG BAT_VERSION="0.19.0"
+ARG GITDELTA_VERSION="0.11.3"
+ARG GITMUX_VERSION="0.7.6"
+ARG K9S_VERSION="0.25.18"
+
+ENV BAT_VERSION=${BAT_VERSION}
+ENV GITDELTA_VERSION=${GITDELTA_VERSION}
+ENV GITMUX_VERSION=${GITMUX_VERSION}
+ENV K9S_VERSION=${K9S_VERSION}
+
 RUN set eux; \
 	arch="$(dpkg --print-architecture)"; arch="${arch##*-}"; \
 	cd /tmp \
 	&& curl -LO https://github.com/sharkdp/bat/releases/download/v${BAT_VERSION}/bat_${BAT_VERSION}_${arch}.deb \
 	&& dpkg -i bat_${BAT_VERSION}_${arch}.deb \
 	&& rm -f bat_${BAT_VERSION}_${arch}.deb \
-	&& curl -LO https://github.com/BurntSushi/ripgrep/releases/download/${RIPGREP_VERSION}/ripgrep_${RIPGREP_VERSION}_${arch}.deb \
-	&& dpkg -i ripgrep_${RIPGREP_VERSION}_${arch}.deb \
-	&& rm -f ripgrep_${RIPGREP_VERSION}_${arch}.deb \
 	&& curl -LO https://github.com/dandavison/delta/releases/download/${GITDELTA_VERSION}/git-delta_${GITDELTA_VERSION}_${arch}.deb \
 	&& dpkg -i git-delta_${GITDELTA_VERSION}_${arch}.deb \
 	&& rm -f git-delta_${GITDELTA_VERSION}_${arch}.deb \
@@ -87,9 +82,16 @@ RUN set eux; \
 	&& mv k9s /usr/local/bin/ \
 	&& rm -f k9s_linux_${local_arch}.tar.gz LICENSE README.md
 
-RUN useradd -m -s /usr/bin/zsh ${DOCKER_USER}
-USER ${DOCKER_USER}
-WORKDIR /home/${DOCKER_USER}
+ARG DOCKER_USER_NAME="devenv"
+ARG DOCKER_USER_UID="1000"
+ARG DOCKER_USER_GID="1000"
+ENV DOCKER_USER_NAME=${DOCKER_USER_NAME}
+ENV DOCKER_USER_UID=${DOCKER_USER_UID}
+ENV DOCKER_USER_GID=${DOCKER_USER_GID}
+
+RUN groupadd -g ${DOCKER_USER_GID} ${DOCKER_USER_NAME} && useradd -o -m -s /usr/bin/zsh -u ${DOCKER_USER_UID} -N -g ${DOCKER_USER_GID} ${DOCKER_USER_NAME}
+USER ${DOCKER_USER_NAME}
+WORKDIR /home/${DOCKER_USER_NAME}
 
 # Install all go tools vim-go and coc-go needs
 RUN go install golang.org/x/tools/...@latest \
@@ -116,16 +118,10 @@ RUN go install golang.org/x/tools/...@latest \
 # Install oh-my-zsh
 RUN sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 
-# Install tmux plugins
-COPY --chown=${DOCKER_USER}:${DOCKER_USER} ./tmux.conf .tmux.conf
-RUN export TMUX_PLUGIN_MANAGER_PATH=${HOME}/.tmux/plugins \
-	&& mkdir -p $TMUX_PLUGIN_MANAGER_PATH \
-	&& /usr/share/tmux-plugin-manager/scripts/install_plugins.sh
-
 # Install CoC plugins
 RUN mkdir -p ~/.config/coc/extensions \
 	&& cd ~/.config/coc/extensions \
-	&& [[ -f package.json ]] || echo '{"dependencies":{}}'> package.json \
+	&& ([ -f package.json ] || echo '{"dependencies":{}}'> package.json) \
 	&& npm install coc-sh --global-style --ignore-scripts --no-bin-links --no-package-lock --only=prod \
 	&& npm install coc-css --global-style --ignore-scripts --no-bin-links --no-package-lock --only=prod \
 	&& npm install coc-go --global-style --ignore-scripts --no-bin-links --no-package-lock --only=prod \
@@ -148,12 +144,18 @@ RUN sh -c 'curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubus
 	&& cd ~/.vim/pack/coc/start \
 	&& curl --fail -L https://github.com/neoclide/coc.nvim/archive/release.tar.gz | tar xzfv -
 
-COPY --chown=${DOCKER_USER}:${DOCKER_USER} ./init.vim .config/nvim/
-COPY --chown=${DOCKER_USER}:${DOCKER_USER} ./init.vim .vimrc
-COPY --chown=${DOCKER_USER}:${DOCKER_USER} ./dircolors .dircolors
-COPY --chown=${DOCKER_USER}:${DOCKER_USER} ./zshrc .zshrc
-COPY --chown=${DOCKER_USER}:${DOCKER_USER} ./devenv.zsh .oh-my-zsh/custom/
-COPY --chown=${DOCKER_USER}:${DOCKER_USER} ./devenv-gallifrey.zsh-theme .oh-my-zsh/themes/
+# Install tmux plugins
+COPY --chown=${DOCKER_USER_NAME}:${DOCKER_USER_NAME} ./tmux.conf .tmux.conf
+RUN export TMUX_PLUGIN_MANAGER_PATH=${HOME}/.tmux/plugins \
+	&& mkdir -p $TMUX_PLUGIN_MANAGER_PATH \
+	&& /usr/share/tmux-plugin-manager/scripts/install_plugins.sh
+
+COPY --chown=${DOCKER_USER_NAME}:${DOCKER_USER_NAME} ./init.vim .config/nvim/
+COPY --chown=${DOCKER_USER_NAME}:${DOCKER_USER_NAME} ./init.vim .vimrc
+COPY --chown=${DOCKER_USER_NAME}:${DOCKER_USER_NAME} ./dircolors .dircolors
+COPY --chown=${DOCKER_USER_NAME}:${DOCKER_USER_NAME} ./zshrc .zshrc
+COPY --chown=${DOCKER_USER_NAME}:${DOCKER_USER_NAME} ./devenv.zsh .oh-my-zsh/custom/
+COPY --chown=${DOCKER_USER_NAME}:${DOCKER_USER_NAME} ./devenv-gallifrey.zsh-theme .oh-my-zsh/themes/
 
 # Install nvim plugins
 RUN nvim +'PlugInstall' +qa --headless
