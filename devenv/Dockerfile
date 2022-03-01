@@ -21,10 +21,11 @@ RUN set -eux; \
 		dtach \
 		fzf \
 		g++ \
-		gettext libtool \
+		gettext \
 		gosu \
 		kubectl \
 		less \
+		libtool \
 		libtool-bin \
 		ninja-build \
 		nodejs \
