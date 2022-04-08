@@ -1,13 +1,8 @@
-"-----------------------------------------------
-" Plugins START
 call plug#begin()
-  Plug 'airblade/vim-gitgutter'
   Plug 'Asheq/close-buffers.vim'
-  Plug 'cespare/vim-toml'
-  Plug 'editorconfig/editorconfig-vim'
+  Plug 'airblade/vim-gitgutter'
   Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
   Plug 'itchyny/lightline.vim'
-  Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
   Plug 'junegunn/fzf.vim'
   Plug 'junegunn/vim-easy-align'
   Plug 'kevinoid/vim-jsonc'
@@ -15,7 +10,6 @@ call plug#begin()
   Plug 'neoclide/coc.nvim', { 'branch': 'release' }
   Plug 'ntpeters/vim-better-whitespace'
   Plug 'overcache/NeoSolarized'
-  Plug 'preservim/nerdtree'
   Plug 'tmux-plugins/vim-tmux'
   Plug 'tpope/vim-commentary'
   Plug 'tpope/vim-fugitive'
@@ -56,21 +50,21 @@ let g:go_highlight_operators = 1
 let g:go_highlight_extra_types = 1
 let g:go_highlight_build_constraints = 1
 let g:go_highlight_generate_tags = 1
+let g:go_term_enabled = 1
+let g:go_term_mode = "split"
+let g:go_term_reuse = 1
 
 autocmd BufNewFile,BufRead *.go setlocal noexpandtab tabstop=4 shiftwidth=4
-
-" Start NERDTree when Vim is started without file arguments.
-autocmd StdinReadPre * let s:std_in=1
-autocmd VimEnter * if argc() == 0 && !exists('s:std_in') | NERDTree | endif
-" Exit Vim if NERDTree is the only window remaining in the only tab.
-autocmd BufEnter * if tabpagenr('$') == 1 && winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree() | quit | endif
-" Close the tab if NERDTree is the only window remaining in it.
-autocmd BufEnter * if winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree() | quit | endif
 
 autocmd FileType go nmap gtj :CocCommand go.tags.add json<cr>
 autocmd FileType go nmap gty :CocCommand go.tags.add yaml<cr>
 autocmd FileType go nmap gtx :CocCommand go.tags.clear<cr>
 autocmd FileType go nmap gtf :CocCommand go.test.generate.function<cr>
+autocmd FileType go nmap <Leader>gtf <Plug>(go-test-func)<cr>
+autocmd FileType go nmap <Leader>gct <Plug>(go-coverage-toggle)<cr>
+autocmd FileType go nmap <Leader>gae <Plug>(go-alternate-edit)<cr>
+autocmd FileType go nmap <Leader>gas <Plug>(go-alternate-split)<cr>
+autocmd FileType go nmap <Leader>gav <Plug>(go-alternate-vertical)<cr>
 
 " Settings END
 "-------------------------------------------------
@@ -90,10 +84,10 @@ autocmd BufReadPost *
 "------------------------------------------------
 " Theme START
 " Colors in tmux
-if exists('$TMUX')
-  let &t_8f = "<Esc>[38;2;%lu;%lu;%lum"
-  let &t_8b = "<Esc>[48;2;%lu;%lu;%lum"
-endif
+" if exists('$TMUX')
+"   let &t_8f = "<Esc>[38;2;%lu;%lu;%lum"
+"   let &t_8b = "<Esc>[48;2;%lu;%lu;%lum"
+" endif
 syntax on
 set termguicolors
 silent! colorscheme NeoSolarized
@@ -251,3 +245,18 @@ nnoremap <silent><nowait> <space>j  :<C-u>CocNext<CR>
 " Do default action for previous item.
 nnoremap <silent><nowait> <space>k  :<C-u>CocPrev<CR>
 
+" AgIn: Start ag in the specified directory
+" e.g.
+"   :AgIn .. foo
+function! s:ag_in(bang, ...)
+  if !isdirectory(a:1)
+    throw 'not a valid directory: ' .. a:1
+  endif
+  " Press `?' to enable preview window.
+  call fzf#vim#ag(join(a:000[1:], ' '), fzf#vim#with_preview({'dir': a:1}, 'up:50%:hidden', '?'), a:bang)
+
+  " If you don't want preview option, use this
+  " call fzf#vim#ag(join(a:000[1:], ' '), {'dir': a:1}, a:bang)
+endfunction
+
+command! -bang -nargs=+ -complete=dir AgIn call s:ag_in(<bang>0, <f-args>)
