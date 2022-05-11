@@ -1,4 +1,4 @@
-FROM thelounge/thelounge:alpine
+FROM thelounge/thelounge:latest
 LABEL maintainer="Odd E. Ebbesen <oddebb@gmail.com>"
 
 ENTRYPOINT ["docker-entrypoint.sh"]
