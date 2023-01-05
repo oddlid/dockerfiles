@@ -1,0 +1,17 @@
+version: '3.8'
+
+services:
+  tmuxbuilder:
+    build: .
+    container_name: tmuxbuilder
+    init: true
+    environment:
+      TZ: Europe/Stockholm
+    volumes:
+      - ./tmp:/out
+      - ./build.sh:/build/build.sh:ro
+    command: /bin/bash /build/build.sh /out
+    working_dir: /out
+
+# Get build script from:
+# https://gist.github.com/zenofile/d2acef1a0423e5081e74162cd5a0ae2d
