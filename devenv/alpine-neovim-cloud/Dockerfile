@@ -3,6 +3,7 @@ LABEL maintainer="Odd E. Ebbesen <oddebb@gmail.com>"
 
 RUN apk add --no-cache --update \
 	ansible \
+	cargo \
 	dtach \
 	git-annex \
 	git-annex-bash-completion \
