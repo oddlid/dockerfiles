@@ -17,7 +17,6 @@ RUN echo "https://dl-cdn.alpinelinux.org/alpine/edge/testing" >>/etc/apk/reposit
 	git-zsh-completion \
 	htop \
 	less \
-	lf \
 	neovim \
 	openssh \
 	plzip \
