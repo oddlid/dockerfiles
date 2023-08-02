@@ -5,6 +5,7 @@ RUN apk add --no-cache --update \
 	ansible \
 	cargo \
 	dtach \
+  docker \
 	git-annex \
 	git-annex-bash-completion \
 	git-annex-zsh-completion \
