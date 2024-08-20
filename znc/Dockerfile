@@ -1,5 +1,5 @@
-FROM znc:1.9.0
-MAINTAINER Odd E. Ebbesen <oddebb@gmail.com>
+FROM znc:1.9.1
+LABEL maintainer="Odd E. Ebbesen <oddebb@gmail.com>"
 
 # Fix uid/gid for user znc to match my old image
 RUN apk add --no-cache shadow tzdata && \
