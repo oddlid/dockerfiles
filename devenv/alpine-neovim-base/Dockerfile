@@ -8,25 +8,32 @@ RUN echo "https://dl-cdn.alpinelinux.org/alpine/edge/testing" >>/etc/apk/reposit
   && apk update \
   && apk add --no-cache --update \
   alpine-sdk \
+  bash \
   bat \
   bc \
+  bind-tools \
   coreutils \
+  drill \
   fd \
   fzf \
   git \
   git-zsh-completion \
+  gojq \
   htop \
   less \
   neovim \
+  nmap \
   openssh \
   plzip \
   ripgrep \
+  rsync \
+  socat \
   sudo \
-  the_silver_searcher \
   tmux \
   tmux-zsh-completion \
   tzdata \
   unzip \
   urlview \
+  yq \
   zsh \
   && rm -rf /var/cache/apk/*
