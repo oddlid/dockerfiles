@@ -1,5 +1,5 @@
 FROM alpine:edge
-LABEL maintainer="Odd E. Ebbesen <oddebb@gmail.com>"
+LABEL maintainer="Odd E. Ebbesen <git@oddware.net>"
 
 ARG ARG_TZ="Europe/Stockholm"
 ENV TZ=${ARG_TZ}
@@ -13,24 +13,44 @@ RUN echo "https://dl-cdn.alpinelinux.org/alpine/edge/testing" >>/etc/apk/reposit
   bat \
   bc \
   bind-tools \
+  btop \
   bzip2 \
   bzip3 \
   coreutils \
   dog \
   drill \
+  dtach \
+  eza \
   fd \
   fzf \
+  fzf-bash-plugin \
+  fzf-neovim \
+  fzf-tmux \
+  fzf-vim \
+  fzf-zsh-plugin \
   git \
+  git-annex \
+  git-annex-bash-completion \
+  git-annex-zsh-completion \
+  git-lfs \
+  git-sizer \
   git-zsh-completion \
   gojq \
   gzip \
   htop \
   iproute2 \
+  jq \
+  lazygit \
   less \
+  lf \
+  mc \
+  neomutt \
   neovim \
   nmap \
+  notmuch \
   openssh \
   plzip \
+  rclone \
   ripgrep \
   rsync \
   socat \
@@ -40,6 +60,8 @@ RUN echo "https://dl-cdn.alpinelinux.org/alpine/edge/testing" >>/etc/apk/reposit
   tzdata \
   unzip \
   urlview \
+  vim \
+  vimdiff \
   yq \
   zip \
   zsh \
